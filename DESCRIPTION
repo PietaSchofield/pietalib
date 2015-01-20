@@ -1,0 +1,13 @@
+Package: pietalib
+Type: Package
+Title: A Small Collection Of Useful Functions
+Version: 0.1
+Date: 2014-10-16
+Author: Pieta Schofield
+Maintainer: Who to complain to <p.schofield@dundee.ac.uk>
+Description: My useful functions I don't want to have to source all the time
+License: GPL-2
+Suggests:
+    testthat,
+    knitr
+VignetteBuilder: knitr

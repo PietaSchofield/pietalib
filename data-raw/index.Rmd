@@ -1,0 +1,48 @@
+---
+title: pietalib  
+author: Pieta Schofield
+output:
+  html_document
+
+---
+ | [home](http://www.compbio.dundee.ac.uk/user/pschofield/index.html) | 
+[projects](http://www.compbio.dundee.ac.uk/user/pschofield/private/index.html) | 
+[pietalib](http://www.compbio.dundee.ac.uk/user/pschofield/Projects/pietalib/index.html) | 
+
+```{r setupPage,echo=FALSE,include=FALSE}
+require(pietalib)
+localDir <- "/Users/pschofield/"
+fileName <- "index"
+projName <- "pietalib"
+projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
+if(FALSE){
+  buildAll(projName,fileName,outdir=paste0(projDir,"web"),
+           indir=paste0(localDir,"git_tree/",projName,"/data-raw/"),explicit=T)
+}
+```
+
+###Introduction
+
+This page attempts to document the creation of my pietalib personal package of function.
+I am attempting to do this outside RStudio using the [devtools](http://cran.r-project.org/web/packages/devtools/index.html) package from the command line, and [Hadley Wickham's Book](http://r-pkgs.had.co.nz) as a reference
+
+```{r pietalibDev, eval=FALSE}
+# This is a scratch file for running R from Vim
+#
+# change to the development directory
+setwd("/Users/pschofield/git_tree/pietalib")
+# create a test directory
+devtools::use_testthat()
+# create the documentation from the roxygen comments in the R sources
+devtools::document()
+# load the package for testing
+devtools::load_all()
+# run the test scripts stored in the tests subdirectory
+devtools::test()
+# install the packages so it can be used outwith the source directory
+devtools::install(reload=T)
+# get the help for one of the functions
+help(subScript)
+devtools::use_data_raw()
+devtools::use_vignette("pietalib")
+```

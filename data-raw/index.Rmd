@@ -30,7 +30,7 @@ I am attempting to do this outside RStudio using the [devtools](http://cran.r-pr
 # This is a scratch file for running R from Vim
 #
 # change to the development directory
-setwd("/Users/pschofield/git_tree/pietalib")
+setwd("/Users/pschofield/git_hub/pietalib")
 # create a test directory
 devtools::use_testthat()
 # create the documentation from the roxygen comments in the R sources

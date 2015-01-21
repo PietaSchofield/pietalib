@@ -7,6 +7,12 @@ Author: Pieta Schofield
 Maintainer: Who to complain to <p.schofield@dundee.ac.uk>
 Description: My useful functions I don't want to have to source all the time
 License: GPL-2
+Imports:
+    RSQLite,
+    ggplot2,
+    reshape2,
+    lubridate,
+    RMySQL
 Suggests:
     testthat,
     knitr

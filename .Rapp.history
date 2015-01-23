@@ -1,117 +1,30 @@
-require(pietalib)
-localDir <- "/Users/pschofield/"
-projName <- "pietalib"
-projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
-setwd("/Users/pschofield/git_tree/pietalib")
+ll
 setwd("/Users/pschofield/git_hub/pietalib")
-devtools::use_testthat()
+devtools::test()
+help(subScript)
+c()
+c("")
+list()
 devtools::document()
 devtools::load_all()
-logTime("~/Projects/time_sheet/Week14-20Jan.txt")
-inFile <- paste0(projDir,"Week14Jan.txt")
-inFile <- paste0(projDir,"Week14-21Jan.txt")
-/
-fileName <- "index"
-projName <- "time_sheet"
-projDir <- paste0("/Users/pschofield/Projects/",projName,"/")
-dbName <- paste0(projDir,"timeSheet.db")
-require(RSQLite)
-db <- dbConnect(SQLite(), dbname=dbName)
-dat <- read.delim(outFile,head=T,stringsAsFactors=F)[,c(-1,-2)]
-dat <- read.delim(outFile,head=T,skip=1,stringsAsFactors=F)[,c(-1,-2)]
-dat <- read.delim(outFile,head=F,skip=1,stringsAsFactors=F)[,-1]
-dat$End.Time <- dmy_hm(dat$End.Time)
-colnames(dat)
-dat[1,]
-dat <- read.delim(outFile,head=F,skip=1,stringsAsFactors=F)[,c(-1,-4)]
-dat
-dat <- read.delim(outFile,head=T,stringsAsFactors=F)[,c(-2,7)]
-dat$PID <- sapply(dat$Project,function(x) gsub("]","",tail(strsplit(x,"\[")[[1]],1)))
-dat$PID <- sapply(dat$Project,function(x) gsub("]","",tail(strsplit(x,"[")[[1]],1)))
-dat$PID <- sapply(dat$Project,function(x) gsub("/]","",tail(strsplit(x,"[")[[1]],1)))
-dat$PID <- sapply(dat$Project,function(x) gsub("/]","",tail(strsplit(x,"/[")[[1]],1)))
-dat$PID <- sapply(dat$Project,function(x) gsub("/]","",tail(strsplit(x,"\[")[[1]],1)))
-dat$PID <- sapply(dat$Project,function(x) gsub("\]","",tail(strsplit(x,"\[")[[1]],1)))
-gsub("\["," ","test[it")
-gsub('\['," ","test[it")
-gsub(''['," ","test[it")
-""
-dfsfs
-()
-)))))))
-')
-gsub('['," ","test[it")
-gsub("([)"," ","test[it")
-gsub(`[`," ","test[it")
-gsub("[["," ","test[it")
-gsub('([[:punct:]])|\\s+','_',"test[It")
-gsub('([[:punct:]])|\\s+','_',"test[It]")
-gsub('([[:punct:]])|\\s+',"",tail(strsplit(x,"_")[[1]],1))
-gsub('([[:punct:]])|\\s+',"_",tail(strsplit(x,"_")[[1]],1))
-dat$PID <- sapply(dat$Project,function(x){
-}),na.omit)
-dat$PID[is.na(dat$PID)] <-
-NULL
-dat$PID[is.na(dat$PID)] <- ""
-dat$PID
-sql <- paste0("insert into sessions (",dbListField(db,sessions),") values (", dat)
-sql <- paste0("insert into sessions (",dbListFields(db,sessions),") values (", dat)
-sql <- paste0("insert into sessions (",dbListFields(db,"sessions"),") values (", dat)
-)
-") values (",
-paste0(dat,collapse=","))
-paste0dbListFields(db,"sessions"),collapse=","),
-require(lubridate)
-inFile <- paste0(projDir,"Week14-20Jan.txt")
-outFile <- paste0(projDir,format(Sys.time(),"%Y_%m_%d"),".txt")
-system(paste0("iconv -f UTF-16 -t UTF-8 < ",inFile," > ",outFile),intern=T)
-dat <- read.delim(outFile,head=T,stringsAsFactors=F)[,c(-2,-7)]
-colnames(dat) <- c("Id","Project","Start","End","Duration","Category","Notes")
-dat$End <- dmy_hm(dat$End)
-dat$Start <- dmy_hm(dat$Start)
-dat$Duration <- dat$Duration*60
-dat$Division <- sapply(dat$Category,function(x) head(strsplit(x,",")[[1]],1))
-dat$Category <- sapply(dat$Category,function(x) tail(strsplit(x,",")[[1]],1))
-dat$PID <- as.numeric(sapply(dat$Project,function(x){
-tail(strsplit(gsub('([[:punct:]])|\\s+'," ",x)," ")[[1]],1)
-}))
-dat$PID[is.na(dat$PID)] <- 0
-if(!(dbExistsTable(db,"session"))){
-}else{
-}
-head(datout)
-dat$Project <- sapply(dat$Project,function(x){
-head(strsplit(gsub('([[:punct:]])|\\s+'," ",x)," ")[[1]],1)
+devtools::install(reload=T)
+ls()
+require(pietalib)
+localDir <- "/Users/pschofield/"
+fileName <- "note_2015_01"
+projName <- "notch_jkd"
+projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
+gsuDir <- "/cluster/gsu/delivery/GSU_YRL_Notchsignalling"
+dataSets <- rsh(paste0("ls ",gsuDir))
+files <- lapply(dataSets,function(d){ rsh(paste0("ls ",gsuDir,"/",d,"/*.gz")) })
+names(files) <- dataSets
+ll()
+c(tail(strsplit(dirname(fn),"/")[[1]],1),basename(fn))
+c(tail(strsplit(dirname(fn),"/")[[1]],1),grep("\[lib\](.*?)\[_\]",basename(fn)))
+c(tail(strsplit(dirname(fn),"/")[[1]],1),grep("[lib](.*?)[_]",basename(fn)))
+c(tail(strsplit(dirname(fn),"/")[[1]],1),regmatches("[lib].*[_]",basename(fn)))
+lapply(files,
+function(fn){
+c(tail(strsplit(dirname(fn),"/")[[1]],1),regexpr("[lib].*[_]",basename(fn)))
 })
-head(dat)
-if(dbExistsTable(db,"tmpTable")) dbRemoveTable(db,"tmpTable")
-dbWriteTable(db,"tmpTable",dat)
-sql <- paste0("insert into sessions (",
-") from tmpTable")
-dbListTables(db)
-sql <- paste("insert into sessions (",
-paste0(dbListFields(db,"sessions"),collapse=","),
-") select ",
-paste0(dbListFields(db,"tmpTable"),collapse=","),
-"from tmpTable")
-sql
-dbSendQuery(db,sql)
-datout(db,"select * from sessions")
-datout<-dbGetQuery(db,"select * from sessions")
-length(datout$Id)
-require(ggplot2)
-require(reshape2)
-colnames(dat) <- c("Id","Project","Start","End","Duration","PI","Notes")
-dbRemoveTable(db,"sessions")
-dbWriteTable(db,"sessions",dat)
-plotDat <- melt(dcast(dat,Project~PI,value.var="Duration",sum))
-plotDat <- plotDat[which(plotDat$value>0),]
-plotDat$hours <- plotDat$value/60
-plotDat$percent <- round(100*plotDat$value/sum(plotDat$value))
-colnames(plotDat)[2:3] <- c("PI","minutes")
-gp <- ggplot(plotDat,aes(x=factor(1),y=percent,fill=Project))+
-ggsave(plot=gp,file=paste0(projDir,"figures/Jan14Proj.png"))
-gp <- ggplot(plotDat,aes(x=factor(1),y=percent,fill=PI))+
-geom_bar(width=1,stat="identity")+coord_polar(theta="y") + xlab("") + ylab("")
-exit
 q()

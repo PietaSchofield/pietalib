@@ -3,7 +3,9 @@
 #' Takes a file name and squirts the info into the time recording database. It will check if
 #' data already exists for the dates and stop rather than write duplicate entries.
 #'
-#' @param filename
+#' @param fileName
+#' @param projDir
+#' @param dbName
 #'
 #' @export
 logTime <- function(fileName=NULL,
@@ -12,7 +14,7 @@ logTime <- function(fileName=NULL,
   db <- RSQLite::dbConnect(RSQLite::SQLite(), dbname=paste0(projDir,dbName))
   outFile <- paste0(projDir,format(Sys.time(),"%Y_%m_%d"),".txt")
   uploads <- as.data.frame(cbind(date=format(Sys.time(),"%Y_%m_%d"),
-                                 infile=fileName,outFile=outFile)
+                                 infile=fileName,outFile=outFile))
   system(paste0("iconv -f UTF-16 -t UTF-8 < ",inFile," > ",outFile),intern=T)
   dat <- read.delim(outFile,head=T,stringsAsFactors=F)[,c(-1,-2)]
   dat$End.Time <- lubridate::dmy_hm(dat$End.Time)

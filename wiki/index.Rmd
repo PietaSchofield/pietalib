@@ -1,11 +1,6 @@
----
-title: pietalib  
-author: Pieta Schofield
-output:
-  html_document
+# Pietalib my private R functions 
 
----
- | [home](http://www.compbio.dundee.ac.uk/user/pschofield/index.html) | 
+| [home](http://www.compbio.dundee.ac.uk/user/pschofield/index.html) | 
 [projects](http://www.compbio.dundee.ac.uk/user/pschofield/private/index.html) | 
 [pietalib](http://www.compbio.dundee.ac.uk/user/pschofield/Projects/pietalib/index.html) | 
 
@@ -15,9 +10,13 @@ localDir <- "/Users/pschofield/"
 fileName <- "index"
 projName <- "pietalib"
 projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
+urlStub <- paste0("/PietaSchofield/",projName,"/")
 if(FALSE){
+  knit(input=paste0(localDir,"git_hub/",projName,"/wiki/",fileName,".Rmd"),
+       output=paste0(localDir,"git_hub/",projName,".wiki/Home.md"))
+
   buildAll(projName,fileName,outdir=paste0(projDir,"web"),
-           indir=paste0(localDir,"git_tree/",projName,"/data-raw/"),explicit=T)
+           indir=paste0(localDir,"git_hub/",projName,"/wiki/"),explicit=T)
 }
 ```
 
@@ -27,8 +26,6 @@ This page attempts to document the creation of my pietalib personal package of f
 I am attempting to do this outside RStudio using the [devtools](http://cran.r-project.org/web/packages/devtools/index.html) package from the command line, and [Hadley Wickham's Book](http://r-pkgs.had.co.nz) as a reference
 
 ```{r pietalibDev, eval=FALSE}
-# This is a scratch file for running R from Vim
-#
 # change to the development directory
 setwd("/Users/pschofield/git_hub/pietalib")
 # create a test directory
@@ -46,3 +43,16 @@ help(subScript)
 devtools::use_data_raw()
 devtools::use_vignette("pietalib")
 ```
+
+###January 20, 2015
+
+Moved the code base to a private [GitHub](https://github.com/PietaSchofield/pietalib) repository like the SpikeNorm one
+
+###January 23, 2015
+
+Some ammendments
+- Started adding timelogging stuff for quick loading of OfficeTime data
+- Added cores to subScript
+- Added a function rsh to run remote command
+
+

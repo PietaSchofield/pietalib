@@ -54,5 +54,6 @@ Some ammendments
 - Started adding timelogging stuff for quick loading of OfficeTime data
 - Added cores to subScript
 - Added a function rsh to run remote command
-
+- Added a function to save a list of package citations to a bib file for importing into 
+  endnote
 

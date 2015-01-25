@@ -1,4 +1,3 @@
 library(pietalib)
 
-subScript()
 

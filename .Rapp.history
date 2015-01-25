@@ -1,142 +1,45 @@
-setwd(devDir)
-if(!file.exists(paste0(devDir,"tests"))) devtools::use_testthat()
-if(length(list.files(paste0(devDir,"tests/testthat/")))>0) devtools::test()
-fitR <- ldply(lapply(colnames(dge$spikeCounts),
-dge
-as.data.frame(cbind(m=m, c=dge$spikeConc[,m], e=dge$spikeExpr[,s]))
-buildAll(projName,fileName,outdir=paste0(localDir,projName,"/web/"),
-citation("MASS")
-citation("robust")
-library(WRS)
-citation("WRS")
-str(citation("WRS"))
-library(RefManageR)
-library(knitcitations)
-help(citep)
-write(toBibtex(citation("WRS")),file="~/temp.bib")
-WriteBib(toBibtex(citation("WRS")),file="~/temp.bib")
-WriteBib(toBibtex.BibEntry(citation("WRS")),file="~/temp.bib")
-WriteBib(BibEntry(citation("WRS")),file="~/temp.bib")
-capture.output(utils:::print.bibentry(citation("ggplot2"), style = "Bibtex"),#
-               file = "endnote_import.bib")
-lapply(c("ggplot2","WRS"), citation)
-print.bibentry(lapply(c("ggplot2","WRS"), citation))
-utils::print.bibentry(lapply(c("ggplot2","WRS"), citation))
-utils:::print.bibentry(lapply(c("ggplot2","WRS"), citation))
-lapply(c("ggplot2","WRS"), function(c) utils:::print.bibentry(citation(x)))))
-lapply(c("ggplot2","WRS"), function(c) utils:::print.bibentry(citation(x))))
-lapply(c("ggplot2","WRS"), function(c) utils:::print.bibentry(citation(x)))
-lapply(c("ggplot2","WRS"), function(c) utils:::print.bibentry(citation(c)))
-lapply(c("ggplot2","WRS"), function(c) utils:::print.bibentry(citation(c),style="Bibtex"))
-lapply(c("ggplot2","WRS"), function(c) bibEntry(citation(c),style="Bibtex"))
-writeLines(lapply(c("ggplot2","WRS"), function(c) toBibtex(citation(c),style="Bibtex")))
-lapply(c("ggplot2","WRS"), function(c) toBibtex(citation(c),style="Bibtex"))
-capture.output(lapply(c("ggplot2","WRS"), function(c) toBibtex(citation(c),style="Bibtex")),file="endnote_import.bib")
-unlist(lapply(c("ggplot2","WRS"), function(c) toBibtex(citation(c),style="Bibtex")))
-lapply(c("ggplot2","WRS"), function(c) write(toBibtex(citation(c),style="Bibtex")),file="endnote_import.bib"),"test.bib",append=T))
-lapply(c("ggplot2","WRS"), function(c) write(toBibtex(citation(c),style="Bibtex"),file="endnote_import.bib"),"test.bib",append=T))
-lapply(c("ggplot2","WRS"), function(c) write(toBibtex(citation(c),style="Bibtex"),file="endnote_import.bib",append=T))
-lapply(c("ggplot2","WRS"), function(c) write(toBibtex(citation(c),style="Bibtex"),file="endnote.bib",append=T))
-toBibtex(citation("WRS"))
-bibE<-toBibtex(citation("WRS"))
-str(bibE)
-bibE$author
-bibE[1]
-bibE[2]
-bibE[3]
-gsub("{,","{temp1,",bibE)
-gsub("{,","{temp1,",bibE[1])
-gsub("\{,","\{temp1,",bibE[1])
-gsub("[{,]","{temp1,",bibE[1])
-gsub("[{]","{temp1",bibE[1])
-genBibtex(c("ggplot2","WRS","plyr","reshape2"),filename="bibtex.bib")
-genBibtex(c("ggplot2","WRS","plyr","reshape2"),outfile="bibtex.bib")
-setwd("/Users/pschofield/git_hub/pietalib")
-devtools::install(reload=T)
-indir=paste0(localDir,"git_hub/",projName,"/wiki/"),explicit=T)
-projDir <- paste0("/homes/pschofield/Projects/",projName)
-projName <- "notes"
-fileName <- "note_2015_01"
-buildAll(projName,fileName,outstub="notebook")
-buildAll(projName,fileName,outdir=paste0(projDir,"web"),
-indir=paste0(projName,"/wiki/"),explicit=T)
-fileName <- "index"
-projName <- "pietalib"
-urlStub <- paste0("/PietaSchofield/",projName,"/")
-output=paste0(localDir,"git_hub/",projName,".wiki/Home.md"))
-localDir <- "/Users/pschofield/Projects/"
-require(pietalib)
-localDir <- "/Users/pschofield/"
+require(knitcitations)
+require(devtools)
+require(plyr)
+require(ggplot2)
+require(reshape2)
+require(robust)
+require(edgeR)
+require(MASS)
 fileName <- "develop"
 projName <- "SpikeNorm"
-projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
 urlStub <- paste0("/user/pschofield/Projects/",projName,"/")
 imgDir <- paste0("/homes/pschofield/Images/public/",projName,"/")
 imgURL <- paste0("http://www.compbio.dundee.ac.uk/user/pschofield/public/images/"
 ,projName,"/")
 devDir <- paste0(localDir,"git_hub/SpikeNorm/")
-dge <- calcSpikeNorm(DGEList(exprData),sampleData)
-fitR <- ldply(lapply(colnames(dge$countSpikes),
-function(s){
-m <- dge$samples$mix[which(rownames(dge$samples)==s)]
-as.data.frame(cbind(m=m, c=dge$concSpikes[,m], e=dge$countSpikes[,s]))
-}))
-fitR$c <- as.numeric(as.character(fitR$c))
-fitR$e <- as.numeric(as.character(fitR$e))
-mixFit <- aov(e~c*m,fitR)
-summary(mixFit)
-head(fitR)
-}),.id="m")
-require(MASS)
-fit <- rlm(e~c+0,fitR[which(fitR$m==m),])
-levels(fitR$m)
-fit <- rlm(e~c+0,fitR[which(fitR$m=="mix1"),])
-fit
-summary(fit)
-mxFits <- ldply(lapply(levels(fitR$m),
-mxFits
-mixFits <- ldply(lapply(levels(fitR$m),
-function(mx){
-fit <- rlm(e~c+0,fitR[which(fitR$m==mx),])
-cbind(mix=mx,m=fit$coefficients[1])
-mixFits$m <- as.numeric(as.character(mixFits$m))
-mixFitPlot <- paste0(imgDir,"mixFitPlot.png")
-mixFitURL <- paste0(imgURL,"mixFitPlot.png")
+biblio <- read.bibtex(paste0(devDir,"wiki/biblio.bib"))
+setwd(devDir)
+if(!file.exists(paste0(devDir,"tests"))) devtools::use_testthat()
 mixFits
-scale_colour_continuous("mix") +
-geom_abline(data=mixFits,aes(intercept=0,slope=m,colour=m))
-gplt <- ggplot(fitR,aes(x=c,y=e,colour=m)) + geom_point() +
-geom_smooth(aes(group=m),method=lm,formula=y~x+0) +
-geom_abline(data=mixFits,aes(intercept=0,slope=m,colour=mix))
-suppressMessages(ggsave(plot=gplt,file=mixFitPlot))
-knit(input=paste0(localDir,"git_hub/",projName,"/wiki/",fileName,".Rmd"),
-output=paste0(localDir,"git_hub/",projName,".wiki/dev/calcSpikeNorm-Development.md"))
-buildAll(projName,fileName,outdir=paste0(projDir,"web/"),
-indir=paste0(devDir,"wiki/"),explicit=T)
-citation("bioconductor")
-citation("Biobase")
-fitZ <- fitR[which(fitR$e>0),]
-mixFitZ <- aov(e~c*m,fitZ)
-summary(mixFitZ)
-mixFitsZ <- ldply(lapply(levels(fitZ$m),
-function(m){
-fit <- rlm(e~c+0,fitZ[which(fitZ$m==m),],psi = psi.hampel)
-cbind(mix=m,m=fit$coefficients[1])
-}),.id="mix")
-mixFitsZ$m <- as.numeric(as.character(mixFitsZ$m))
-gplt <- ggplot(fitZ,aes(x=c,y=e,colour=m)) + geom_point() +
-geom_smooth(aes(group=m),method=rlm,formula=y~x+0) +
-xlab("Concentration") + ylab("Expression") +
-scale_colour_discrete("mix") +
-geom_abline(data=mixFitsZ,aes(intercept=0,slope=m,colour=mix))
-zeroRemovePlot <- paste0(imgDir,"zeroRemove.png")
-zeroRemoveURL <- paste0(imgURL,"zeroRemove.png")
-suppressMessages(ggsave(plot=gplt,file=zeroRemovePlot))
-dgn <- calcSpikeNorm(DGEList(exprData),sampleData)
-gplt
-gplt <- plotMixFits(dgn)
-gpltn <- plotMixFits(dgn,normalize=T)
+dgn$mixFits
+mixFits[1,2:4]/mixFits[2,2:4]
+dgn$mixFits[1,2:4]/dgn$mixFits[2,2:4]
+dgn$mixFits$lib.norm <- mean(dgn$mixFits$libSize)/mixFitsZ$libSize
+dgn$mixFits$lib.norm
+devtools::load_all(reset=T)
+dgn <- calcSpikeNorm(as.matrix(exprData),sampleData)
+dgn
+gplt <- plotMixFits(dgn,normType="fit")
+gpltn <- plotMixFits(dgn,normType="lib")
+dgn$mixFits$lib.norm <- mean(dgn$mixFits$libSize)/dgn$mixFits$libSize
+require(pietalib)
+png(paste0(imgDir,"multiplot.png"),width=1000,height=400)
+multiplot(gplt,gpltn,cols=2)
+pietalib::multiplot(gplt,gpltn,cols=2)
+localDir <- "/Users/pschofield/"
+fileName <- "index"
+projName <- "pietalib"
+projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
+urlStub <- paste0("/PietaSchofield/",projName,"/")
 devtools::load_all()
-help(plotMixFits)
+devtools::test()
+setwd("/Users/pschofield/git_hub/pietalib")
+devtools::use_testthat()
 devtools::document()
-quit(save = "no")
+q()

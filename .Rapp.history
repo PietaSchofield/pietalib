@@ -1,45 +1,36 @@
-require(knitcitations)
-require(devtools)
-require(plyr)
-require(ggplot2)
-require(reshape2)
-require(robust)
-require(edgeR)
-require(MASS)
-fileName <- "develop"
-projName <- "SpikeNorm"
-urlStub <- paste0("/user/pschofield/Projects/",projName,"/")
-imgDir <- paste0("/homes/pschofield/Images/public/",projName,"/")
-imgURL <- paste0("http://www.compbio.dundee.ac.uk/user/pschofield/public/images/"
-,projName,"/")
-devDir <- paste0(localDir,"git_hub/SpikeNorm/")
-biblio <- read.bibtex(paste0(devDir,"wiki/biblio.bib"))
-setwd(devDir)
-if(!file.exists(paste0(devDir,"tests"))) devtools::use_testthat()
-mixFits
-dgn$mixFits
-mixFits[1,2:4]/mixFits[2,2:4]
-dgn$mixFits[1,2:4]/dgn$mixFits[2,2:4]
-dgn$mixFits$lib.norm <- mean(dgn$mixFits$libSize)/mixFitsZ$libSize
-dgn$mixFits$lib.norm
-devtools::load_all(reset=T)
-dgn <- calcSpikeNorm(as.matrix(exprData),sampleData)
-dgn
-gplt <- plotMixFits(dgn,normType="fit")
-gpltn <- plotMixFits(dgn,normType="lib")
-dgn$mixFits$lib.norm <- mean(dgn$mixFits$libSize)/dgn$mixFits$libSize
-require(pietalib)
-png(paste0(imgDir,"multiplot.png"),width=1000,height=400)
-multiplot(gplt,gpltn,cols=2)
-pietalib::multiplot(gplt,gpltn,cols=2)
 localDir <- "/Users/pschofield/"
+dbName <- paste0(projDir,"timeSheet.db")
 fileName <- "index"
-projName <- "pietalib"
-projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
-urlStub <- paste0("/PietaSchofield/",projName,"/")
-devtools::load_all()
-devtools::test()
+projName <- "time_sheet"
+projDir <- paste0("/Users/pschofield/Projects/",projName,"/")
+dbName
+require(lubridate)
+dbCommit(db)
 setwd("/Users/pschofield/git_hub/pietalib")
 devtools::use_testthat()
+devtools::test()
 devtools::document()
+devtools::load_all()
+devtools::install(reload=T)
+dbSendQuery(db,"drop table sessions")
+dbSendQuery(db,"drop table uploads")
+dbSendQuery(db,"drop table tmpTable")
+dbDisconnect(db)
+require(pietalib)
+require(ggplot2)
+require(reshape2)
+logTime(paste0(projDir,"Jan14-20.txt"))
+logTime(paste0(projDir,"Jan21-27.txt"))
+db <- RSQLite::dbConnect(SQLite(), dbname=dbName)
+ses <- dbGetQuery(db,"select * from sessions where End > '2015-01-21'")
+plotDat <- melt(dcast(ses,Project~PI,value.var="Duration",sum))
+plotDat <- plotDat[which(plotDat$value>0),]
+plotDat$hours <- plotDat$value/60
+plotDat$percent <- round(100*plotDat$value/sum(plotDat$value))
+colnames(plotDat)[2:3] <- c("PI","minutes")
+gp <- ggplot(plotDat,aes(x=factor(1),y=percent,fill=Project))+
+geom_bar(width=1,stat="identity")+coord_polar(theta="y") + xlab("") + ylab("")
+kable(plotDat)
+buildAll(projName,fileName)
+gp
 q()

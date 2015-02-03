@@ -26,8 +26,8 @@ logTime <- function(fileName=NULL, projDir="/Users/pschofield/Projects/time_shee
   End <- lubridate::dmy_hm(dat$End.Time)
   Start <- lubridate::dmy_hm(dat$Start.Time)
   dat$time <- End-Start
-  dat$End.Time <- stamp("2000-2-23 12:30",quiet=T)(End)
-  dat$Start.Time <- stamp("2000-2-23 12:30",quiet=T)(Start)
+  dat$End.Time <- lubridate::stamp("2000-2-23 12:30",quiet=T)(End)
+  dat$Start.Time <- lubridate::stamp("2000-2-23 12:30",quiet=T)(Start)
   dat$Duration <- dat$Duration*60
 
   # cleanup the notes

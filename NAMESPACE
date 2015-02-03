@@ -2,6 +2,7 @@
 
 export(buildAll)
 export(genBibtex)
+export(getWeek)
 export(ll)
 export(logTime)
 export(multiplot)

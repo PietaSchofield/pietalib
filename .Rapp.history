@@ -1,36 +1,27 @@
-localDir <- "/Users/pschofield/"
-dbName <- paste0(projDir,"timeSheet.db")
-fileName <- "index"
+fileName <- "ts_2015_02"
 projName <- "time_sheet"
-projDir <- paste0("/Users/pschofield/Projects/",projName,"/")
-dbName
-require(lubridate)
-dbCommit(db)
-setwd("/Users/pschofield/git_hub/pietalib")
-devtools::use_testthat()
-devtools::test()
-devtools::document()
-devtools::load_all()
-devtools::install(reload=T)
-dbSendQuery(db,"drop table sessions")
-dbSendQuery(db,"drop table uploads")
-dbSendQuery(db,"drop table tmpTable")
-dbDisconnect(db)
+buildAll(projName,fileName)
 require(pietalib)
 require(ggplot2)
 require(reshape2)
-logTime(paste0(projDir,"Jan14-20.txt"))
-logTime(paste0(projDir,"Jan21-27.txt"))
+logTime(paste0(projDir,"Jan28.txt"))
+:ls
+require(RSQLite)
+logTime(paste0(localDir,"Projects/time_sheet/Jan28.txt"))
 db <- RSQLite::dbConnect(SQLite(), dbname=dbName)
 ses <- dbGetQuery(db,"select * from sessions where End > '2015-01-21'")
-plotDat <- melt(dcast(ses,Project~PI,value.var="Duration",sum))
-plotDat <- plotDat[which(plotDat$value>0),]
-plotDat$hours <- plotDat$value/60
-plotDat$percent <- round(100*plotDat$value/sum(plotDat$value))
-colnames(plotDat)[2:3] <- c("PI","minutes")
-gp <- ggplot(plotDat,aes(x=factor(1),y=percent,fill=Project))+
-geom_bar(width=1,stat="identity")+coord_polar(theta="y") + xlab("") + ylab("")
-kable(plotDat)
-buildAll(projName,fileName)
-gp
+dbConnection
+help(RSQLite)
+localDir <- "/Users/pschofield/"
+fileName <- "index"
+projName <- "pietalib"
+projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
+urlStub <- paste0("/PietaSchofield/",projName,"/")
+setwd("/Users/pschofield/git_hub/pietalib")
+getWeek("2015/01/28")
+devtools::load_all()
+devtools::document()
+devtools::install(reload=T)
+devtools::test()
+help(pietalib)
 q()

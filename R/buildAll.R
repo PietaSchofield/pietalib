@@ -16,6 +16,11 @@
 buildAll <- function(project,file="*",outstub="", outdir="/homes/pschofield/",
                      indir="/Users/pschofield/git_tree/",explicit=F, 
                      outType="html_document"){
+  if(!file.exists(outdir) & !explicit){
+    outdir <- "/Users/pschofield/"
+  }else if(!file.exists(outdir)){
+    stop(paste("Can't find ",outdir," Check network drive?"))
+  }
   pat <- paste0("^",file,"[.]Rmd$")
   if(!explicit){
     inDir <- paste0(indir,project,"/")
@@ -36,7 +41,7 @@ buildAll <- function(project,file="*",outstub="", outdir="/homes/pschofield/",
     function(f){
       print(f)
       rmarkdown::render(f,output_format=outType, output_dir=outDir,)
-   })
+    })
 }
 
 

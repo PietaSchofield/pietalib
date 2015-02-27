@@ -1,142 +1,70 @@
-pietalib
-localDir <- "/Users/pschofield/"
-projName <- "sumo_rth"
-projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
-if(!file.exists("/homes/pschofield")){
-require(pietalib)
-if(!file.exists("/homes/pschofield/Projects",include.dir=T)){
-rootDir
-if(!file.exists("/homes/pschofield/Projects")){
-rootDir <- "/Users/pschofield/"
-}else{
-rootDir <- "/homes/pschofield/"
+requife(pietalib)
+buildAll(projName,fileName,outstub="logs")
+fileName <- "index"
+projName <- "pietalib"
+urlStub <- paste0("/PietaSchofield/",projName,"/")
+if(FALSE){
+knit(input=paste0(localDir,"git_hub/",projName,"/wiki/",fileName,".Rmd"),
+output=paste0(localDir,"git_hub/",projName,".wiki/Home.md"))
+buildAll(projName,fileName,outdir=paste0(projDir,"web"),
+indir=paste0(localDir,"git_hub/",projName,"/wiki/"),explicit=T)
 }
-webDir <- paste0("/user/pschofield/Projects/",projName,"/")
-projDir <- paste0(rootDir,"Projects/",projName,"/")
-imgDIR <- paste0(projDir,"web/figures/")
-help(render)
-files
-unlist(files)
-system2(paste0("open ",projDir,paste(unlist(files))))
-system2(paste0("open ",paste(unlist(files))))
-system(paste0("open -a /Applications/Opera.app ",paste(unlist(files))))
-system(paste0("open ,paste(unlist(files))))
-system(paste0("open ",paste(unlist(files))))
-files <- buildAll(projName,fileName,outstub="notebook")
-buildAll("bsub_nsw","index")
-projName <- "bsub_nsw"
-fileName <- "note_2015_02"
-projName <- "notes"
-buildAll(projName,fileName,outstub="notebook")
+require(pietalib)
+require(ggplot2)
+localDir <- "/Users/pschofield/"
+fileName <- "ts_2015_02"
+projName <- "time_sheet"
+projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
+projDir="/Users/pschofield/Projects/time_sheet/"
+dbName="timeSheet.db"
+db <- RSQLite::dbConnect(RSQLite::SQLite(), dbname=paste0(projDir,dbName))
 setwd("/Users/pschofield/git_hub/pietalib")
+devtools::use_testthat()
 devtools::document()
 devtools::load_all()
+devtools::test()
 devtools::install(reload=T)
-datDir <- paste0(localDir,"Projects/sumo_rth/data/qPCRresults/",
-files <- list.files(datDir, pattern=".*pzfx$",full=T)
-gfiles <- lapply(files,
-function(fn){
-gene <- head(strsplit(basename(fn),"_")[[1]],1)
-pFile <- paste0(imgDIR,gene,"_plot.png")
-dat <- readPRISM(fn)
-gp <- ggplot(dat,aes(x=Var1,y=log(value),fill=Var2)) +geom_boxplot() +
-facet_grid(.~Var2)
-suppressMessages(ggsave(plot=gp,file=pFile, width=12,height=8))
-paste0("![",gene,"](",pFile,")")
-})
-fileTable <- ldply(gfiles)
-colnames(fileTable) <- "Plots"
-fileTable$Gene <- sapply(files,function(fn) head(strsplit(basename(fn),"_")[[1]],1))
-kable(fileTable)
-dir(datDir)
-fileName
+delWeek("2015-02-18")
+logTime(paste0(localDir,"Projects/time_sheet/Feb18.txt"))
+plotDat <- getWeek("2015-02-18")
+gp <- ggplot(plotDat,aes(x=factor(1),y=percent,fill=Project))+
+geom_bar(width=1,stat="identity")+coord_polar(theta="y") + xlab("") + ylab("")
+kable(plotDat)
+outFile <- buildAll(projName,fileName,outstub="logs")
+view(outFile)
+log(.3,2)
+log(.15,2)
+log(2,2)
+2^.15
+2^.3
+2^.38
+getwd()
+dir()
+RsubreadUsersGuide()
+system(paste0("open ",outFile))
+dat <- read.delim("/Users/pschofield/Projects/rna_seq/analysis/hs_74.txt",sep="\t",
+skip=1,head=T)
+colnames(dat) <- sapply(gsub("[.]bam","",colnames(dat)),
+function(x) tail(strsplit(x,"[.]")[[1]],1))
 colnames(dat)
-unique(dat$treatment)
-ordT<-unique(dat$treatment)
-help(index)
-match(ordT,dat$treatment)
-match(dat$treatment,ordT)
-ordG<-unique(dat$gene)
-ordG
-match(dat$gene,ordG)
-ordP <- length(ordT)*(match(dat$treatment,ordT)-1)+match(dat$gene,ordG)
-ordP <- length(ordG)*(match(dat$treatment,ordT)-1)+match(dat$gene,ordG)
-ordP
-dat$ord <- length(ordG)*(match(dat$treatment,ordT)-1)+match(dat$gene,ordG)
-levels(dat$treatment) <- length(ordG)*(match(dat$treatment,ordT)-1)+match(dat$gene,ordG)
 head(dat)
-dat <- with(dat,treatment <- factor(treatment,levels,length(ordG)*
-dat$order <- factor(dat$treatment,levels,length(ordG)*(match(dat$treatment,ordT)-1)+match(dat$gene,ordG))
-dat$order <- dat$treatment,levels,length(ordG)*(match(dat$treatment,ordT)-1)+match(dat$gene,ordG)
-dat$order <- factor(length(ordG)*(match(dat$treatment,ordT)-1)+match(dat$gene,ordG))
-dat <- with(dat,treatment <- factor(length(ordG)*
-dat <- within(dat,treatment <- factor(length(ordG)*
-setattr(dat$treatment,"levels",factor(length(ordG)*
-help(setattr)
-?setattr
-??setattr
-(match(treatment,ordT)-1)+match(gene,ordG))
-attr(dat$treatment,"levels") <- factor(length(ordG)*
-(match(dat$treatment,ordT)-1)+match(dat$gene,ordG))
-gp <- ggplot(dat,aes(x=treatment,y=log(expression),fill=treatment)) +geom_boxplot()
-gp <- ggplot(dat,aes(x=treatment,y=log(expression),fill=gene)) +geom_boxplot()
-gp <- ggplot(dat,aes(x=levels(treatment),y=log(expression),fill=gene)) +geom_boxplot()
-scale_x_discrete(limits=levels(treatment))
-scale_x_discrete(limits=levels(dat$treatment))
-dat$Var2 <- sapply(as.character(dat$Var2),
-colnames(dat) <- c("treatment","gene","expression")
-gp <- ggplot(dat,aes(x=treatment,y=log(expression),fill=gene)) +geom_boxplot() +
-gp <- ggplot(dat,aes(x=treatment,y=expression,fill=gene)) +geom_boxplot() +
-gp <- ggplot(dat,aes(x=treatment,y=expression,fill=gene)) +geom_barplot() +geom_boxplot() +
-gp <- ggplot(dat,aes(x=treatment,y=expression,fill=gene)) +geom_bar() +geom_boxplot() +
-gp <- ggplot(dat,aes(x=treatment,y=expression,fill=gene)) +geom_bar() +
-gp <- ggplot(dat,aes(x=treatment,y=expression,fill=gene)) +geom_bar(stat=identity) +
-stat_summary(fun.data=mean_cl_normal,geom="errorbar",width=0.5)
-)
-stat_summary(fun.data=mean_cl_normal,geom="errorbar",width=0.5,position="dodge")
-stat_summary(fun.data=mean_cl_boot,geom="errorbar",width=0.5,position="dodge")
-geom_bar(stat=identity) +
-gp <- ggplot(dat,aes(x=treatment,y=expression,fill=gene)) +
-stat_summary(fun.data=mean_cl_normal,geom="bar",colour="gray",position="dodge")+
-stat_summary(fun.data=mean_cl_boot,geom="errorbar",width=0.5,position="dodge") +
-scale_x_discrete(limits=ordT)
-scale_x_discrete(limits=ordT) + facet_grid(.~gene)
-gp <- ggplot(dat,aes(x=treatment,y=expression,fill=gene,position="dodge")) +
-scale_x_discrete(limits=ordT) + facet_grid(.~treatment)
-gp <- ggplot(dat,aes(x=gene,y=expression,fill=treatment,position="dodge")) +
-kruskalx.test(expression~treatment,data=dat)
-kruskal.test(expression~treatment,data=dat)
-summary(kruskal.test(expression~treatment,data=dat))
-summary(kruskal.test(expression~treatment+gene,data=dat))
-pairwise.wilcox.test(expression,treatment,data=dat)
-pairwise.wilcox.test(dat$expression,dat$treatment)
-datDir <- paste0(rootDir,"Projects/sumo_rth/data/qPCRresults/",
-"Figure_3_and_S7_with_multiple_timepoints/with_peak/")
-fileName <- paste0(datDir,"CRYAB.pzfx")
-scale_x_discrete(limits=ordG) + facet_grid(.~treatment)
-dat$treatment <- reorder(dat$treatment,match(dat$treatment,ordT))
-ordHS
-dat$gene <- sapply(as.character(dat$Var2),
-colnames(dat) <- c("hs","treatment","expression","gene")
-ordG <- unique(dat$gene)
-gp <- ggplot(dat,aes(x=gene,y=expression,fill=gene,position="dodge")) +
-scale_x_discrete(limits=ordG) + facet_grid(.~hs)
-dat <- readPRISM(fileName)
-dat$Var1 <- sapply(as.character(dat$Var2),
-function(v) tail(strsplit(v," ")[[1]],1))
-dat$treatment <- sapply(as.character(dat$Var2),
-function(v) head(strsplit(v," ")[[1]],1))
-colnames(dat) <- c("hs","combined","expression","treatment")
-ordHS <- unique(dat$hs)
-dat$hs <- reorder(dat$hs,match(dat$hs,ordHS))
-ordT <- unique(dat$treatment)
-gp <- ggplot(dat,aes(x=treatment,y=expression,fill=treatment,position="dodge")) +
-stat_summary(fun.data=mean_cl_normal,geom="bar",colour="gray")+
-stat_summary(fun.data=mean_cl_boot,geom="errorbar",width=0.5) +
-scale_x_discrete(limits=ordT) + facet_grid(.~hs)
-gp
-pairwise.wilcox.test(dat$expression,dat$combined)
-dat
-pairwise.wilcox.test(dat$expression[which(!grepl("^u",dat$hs))],
-dat$combined[which(!grepl("^u",dat$hs))])
+dat[seq(10:20),]
+dat[seq(20:30),]
+length(strsplit(dat$end,))
+fc <- dat[,7:12]
+rownames(fc) <- dat[,1]
+head(fc)
+boxplot(fc)
+boxplot(log(fc))
+boxplot(fc[rowSums(fc)>0,])
+boxplot(log(fc[rowSums(fc)>0,]))
+system(paste0("open -a /Applications/Opera.app ",outFile))
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-3058-Workshop2.Rmd")
+library(SpikeNorm)
+data(exprData)
+head(exprData)
+boxplot(exprData)
+blocplot(log(exprData))
+boxplot(log(exprData))
+exit
 q()

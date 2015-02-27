@@ -57,3 +57,13 @@ Some ammendments
 - Added a function to save a list of package citations to a bib file for importing into 
   endnote
 
+###February 19, 2015
+
+Fix the prism parser
+
+```{r feb19, results="asis"}
+filename <- "/Users/pschofield/Projects/sumo_rth/data/qPCRresults/Figure_S10JK/CHD4.pzfx"
+dat <- readPrism(filename)
+kable(dat)
+```
+

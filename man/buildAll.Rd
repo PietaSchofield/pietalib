@@ -5,8 +5,8 @@
 \title{Build an Rmarkdown file or directory of files into html}
 \usage{
 buildAll(project, file = "*", outstub = "", outdir = "/homes/pschofield/",
-  indir = "/Users/pschofield/git_tree/", explicit = F,
-  outType = "html_document")
+  indir = "/Users/pschofield/git_tree/", explicit = FALSE,
+  outType = "html_document", interact = FALSE)
 }
 \arguments{
 \item{project}{the name of the project}

@@ -14,8 +14,8 @@
 #'
 #' @export
 buildAll <- function(project,file="*",outstub="", outdir="/homes/pschofield/",
-                     indir="/Users/pschofield/git_tree/",explicit=F, 
-                     outType="html_document"){
+                     indir="/Users/pschofield/git_tree/",explicit=FALSE, 
+                     outType="html_document",interact=FALSE){
   if(!file.exists(outdir) & !explicit){
     outdir <- "/Users/pschofield/"
   }else if(!file.exists(outdir)){
@@ -40,7 +40,11 @@ buildAll <- function(project,file="*",outstub="", outdir="/homes/pschofield/",
   lapply(files,
     function(f){
       print(f)
-      rmarkdown::render(f,output_format=outType, output_dir=outDir,)
+      if(!interact){
+        rmarkdown::render(f,output_format=outType, output_dir=outDir)
+      }else{
+        rmarkdown::run(f,output_format=outType, output_dir=outDir)
+      }
     })
 }
 

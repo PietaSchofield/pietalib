@@ -5,10 +5,11 @@
 #' @param start date
 #'
 #' @export
-getWeek <- function(startDate,projDir="/Users/pschofield/Projects/time_sheet/",
+getWeek <- function(startDate,endDate,projDir="/Users/pschofield/Projects/time_sheet/",
                     dbName="timeSheet.db"){
   db <- RSQLite::dbConnect(RSQLite::SQLite(), dbname=paste0(projDir,dbName))
-  ses <- RSQLite::dbGetQuery(db,paste0("select * from sessions where End > '",startDate,"'"))
+  ses <- RSQLite::dbGetQuery(db,paste0("select * from sessions where End > '",startDate,
+                                       "' and End < '",endDate,"'"))
   plotDat <- reshape2::melt(reshape2::dcast(ses,Project~PI,value.var="Duration",sum))
   plotDat <- plotDat[which(plotDat$value>0),]
   plotDat$hours <- plotDat$value/60

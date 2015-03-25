@@ -1,70 +1,16 @@
-requife(pietalib)
-buildAll(projName,fileName,outstub="logs")
-fileName <- "index"
-projName <- "pietalib"
-urlStub <- paste0("/PietaSchofield/",projName,"/")
-if(FALSE){
-knit(input=paste0(localDir,"git_hub/",projName,"/wiki/",fileName,".Rmd"),
-output=paste0(localDir,"git_hub/",projName,".wiki/Home.md"))
-buildAll(projName,fileName,outdir=paste0(projDir,"web"),
-indir=paste0(localDir,"git_hub/",projName,"/wiki/"),explicit=T)
-}
-require(pietalib)
-require(ggplot2)
-localDir <- "/Users/pschofield/"
-fileName <- "ts_2015_02"
-projName <- "time_sheet"
-projDir <- paste0("/homes/pschofield/Projects/",projName,"/")
-projDir="/Users/pschofield/Projects/time_sheet/"
-dbName="timeSheet.db"
-db <- RSQLite::dbConnect(RSQLite::SQLite(), dbname=paste0(projDir,dbName))
-setwd("/Users/pschofield/git_hub/pietalib")
-devtools::use_testthat()
+logTime(paste0(localDir,"Projects/time_sheet/Mar18.txt"))
+plotDat <- getWeek("2015-03-18")
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-351-index.Rmd")
 devtools::document()
-devtools::load_all()
 devtools::test()
 devtools::install(reload=T)
-delWeek("2015-02-18")
-logTime(paste0(localDir,"Projects/time_sheet/Feb18.txt"))
-plotDat <- getWeek("2015-02-18")
+plotDat <- getWeek(startDate="2015-03-18",endDate="2015-03-25")
+plotDat <- getWeek(start="2015-03-11",end="2015-03-18")
+plotDat <- getWeek(startDate="2015-03-11",endDate="2015-03-18")
 gp <- ggplot(plotDat,aes(x=factor(1),y=percent,fill=Project))+
 geom_bar(width=1,stat="identity")+coord_polar(theta="y") + xlab("") + ylab("")
 kable(plotDat)
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-351-ts_2015_03.Rmd")
 outFile <- buildAll(projName,fileName,outstub="logs")
 view(outFile)
-log(.3,2)
-log(.15,2)
-log(2,2)
-2^.15
-2^.3
-2^.38
-getwd()
-dir()
-RsubreadUsersGuide()
-system(paste0("open ",outFile))
-dat <- read.delim("/Users/pschofield/Projects/rna_seq/analysis/hs_74.txt",sep="\t",
-skip=1,head=T)
-colnames(dat) <- sapply(gsub("[.]bam","",colnames(dat)),
-function(x) tail(strsplit(x,"[.]")[[1]],1))
-colnames(dat)
-head(dat)
-dat[seq(10:20),]
-dat[seq(20:30),]
-length(strsplit(dat$end,))
-fc <- dat[,7:12]
-rownames(fc) <- dat[,1]
-head(fc)
-boxplot(fc)
-boxplot(log(fc))
-boxplot(fc[rowSums(fc)>0,])
-boxplot(log(fc[rowSums(fc)>0,]))
-system(paste0("open -a /Applications/Opera.app ",outFile))
-base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-3058-Workshop2.Rmd")
-library(SpikeNorm)
-data(exprData)
-head(exprData)
-boxplot(exprData)
-blocplot(log(exprData))
-boxplot(log(exprData))
-exit
 q()

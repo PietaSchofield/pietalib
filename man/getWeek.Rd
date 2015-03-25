@@ -4,7 +4,8 @@
 \alias{getWeek}
 \title{getWeek return the data for the week comencing}
 \usage{
-getWeek(startDate, projDir = "/Users/pschofield/Projects/time_sheet/",
+getWeek(startDate, endDate,
+  projDir = "/Users/pschofield/Projects/time_sheet/",
   dbName = "timeSheet.db")
 }
 \arguments{

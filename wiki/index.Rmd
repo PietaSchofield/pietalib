@@ -46,7 +46,7 @@ devtools::use_vignette("pietalib")
 
 ###January 20, 2015
 
-Moved the code base to a private [GitHub](https://github.com/PietaSchofield/pietalib) repository like the SpikeNorm one
+Moved the code base to a [GitHub](https://github.com/PietaSchofield/pietalib) repository like the SpikeNorm one
 
 ###January 23, 2015
 
@@ -67,3 +67,8 @@ dat <- readPrism(filename)
 kable(dat)
 ```
 
+###March 25, 2015
+
+Edited the [timesheet](/user/pschofield/Projects/timesheets/) management functions to have a from and to date.
+
+Added a function to pull some grid engine info from the cluster.

@@ -1,16 +1,114 @@
-logTime(paste0(localDir,"Projects/time_sheet/Mar18.txt"))
-plotDat <- getWeek("2015-03-18")
-base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-351-index.Rmd")
-devtools::document()
 devtools::test()
+sicerDir <- '/homes/pschofield/Projects/hypoxia_sr/web/data/analysis/sicer/'
+bamDir <- '/homes/pschofield/Projects/hypoxia_sr/web/data/NOBACK/gsu/hg19/'
+fc <- load(paste0(bamDir,'H3K9sicer_counts.RData'))
+fc
+head(fc$counts)
+h3k9 <- fc
+rm(fc)
+sapply(h3k9$targets,function(fn) tail(strsplit(fn,"[.][.]"),1)))
+h3k9$targets <- colnames(h3k9$counts)
+h3k9$targets <- gsub("[.]bam$","",
+sapply(h3k9$targets,function(fn) tail(strsplit(fn,"[.][.]")[[1]],1)))
+h3k9$targets
+colnames(h3k9$counts) <- unname(h3k9$targets)
+colnames(h3k9$counts)
+head(h3k9$counts)
+require(edgeR)
+treatMat
+dpe <- calcNormFactors(dpe)
+paste0("### [Earlier March 2015 Notebook page](",urlStub,"notebook/note_2015_03.html)")
+cat("### [Earlier March 2015 Notebook page](",urlStub,"notebook/note_2015_03.html)")
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-673-note_2015_03a.Rmd")
+outFile <- buildAll(projName,fileName,outstub=outStub)
+if(!isLocal) outFile <- paste0(urlStub,"Projects/",projName,"/",outStub,"/",fileName,".html")
+outFile <- buildAll(projName,fileName,outstub="notebook")
+if(!locCopy) outFile <- paste0(urlStub,"Projects/",projName,"/notebook/",fileName,".html")
+system(paste0("open ",outFile))
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-673-note_2015_03.Rmd")
+lrt
+outDir <- '/homes/pschofield/Projects/hypoxia_sr/web/data/analysis/sicer/'
+h3k9DERFile <- paste0(outDir,"h3k9DER.RData")
+save(tt,file=h3k9DERFile)
+plot(tt$logCPM,tt$logFC,pch=".")
+plot(tt$logCPM,tt$logFC,pch=".",col=ifelse(tt$FDR<0.05,2,1))
+samples <- unname(h3k9$targets)
+treatMat <- as.data.frame(cbind(
+chip=sapply(samples,function(fn) head(strsplit(fn,"_")[[1]],1)),
+lib=sapply(samples,function(fn) tail(strsplit(fn,"_")[[1]],1)),
+oxy=ifelse(grepl("_H_",samples),"H","N"),
+sid=sapply(samples,function(fn){
+head(strsplit(tail(strsplit(fn,"[.]")[[1]],1),"_")[[1]],1)
+})))
+treatMat$group <- paste0(treatMat$chip,treatMat$oxy)
+dpe <- DGEList(h3k9$counts, group=treatMat$group)
+design <- model.matrix(~0+group, data=dpe$samples)
+colnames(design) <- levels(dpe$samples$group)
+dpe <- estimateGLMTrendedDisp(dpe, design)
+dpe <- estimateGLMTagwiseDisp(dpe, design)
+fit <- glmFit(dpe, design)
+lrt <- glmLRT(fit,contrast=c(0,0,0,0,1,-1,0,0))
+tt <- as.data.frame(topTags(lrt,n=1e6))
+plot(tt$logCPM,tt$logFC,pch=ifelse(tt$FDR<0.1,"o","."))
+plot(tt$logCPM,tt$logFC,pch=ifelse(tt$FDR<0.05,"o","."))
+tt[which(tt$FDR<0.05),]
+"sessionInfo()"
+script <- c("#!/sw/opt/R/3.1.1/bin/Rscript --vanilla",
+"require(pietalib)",
+"require(Rsubread)",
+"require(rtracklayer)",
+"logRun()",
+"sessionInfo()",
+"sicerDir <- '/homes/pschofield/Projects/hypoxia_sr/web/data/analysis/sicer/'",
+"bamDir <- '/homes/pschofield/Projects/hypoxia_sr/web/data/NOBACK/gsu/hg19/'",
+"bamFiles <- list.files(bamDir,patt='.*bam$',full=T)",
+"hypoBed <- paste0(sicerDir,'H3K9hypo/H3K9_hypo_w500_G2000.bed')",
+"normBed <- paste0(sicerDir,'H3K9norm/H3K9_norm_w500_G2000.bed')",
+"hypoGR <- import(hypoBed)",
+"normGR <- import(normBed)",
+"bothGR <- union(hypoGR,normGR)",
+"annot <- as.data.frame(bothGR)",
+"annot$GeneID <- paste0(annot$seqname,'_',annot$start)",
+"colnames(annot)[1] <- 'Chr'",
+"h3k9 <- featureCounts(bamFiles,annot.ext=annot,nthreads=4)",
+"save.image(file=paste0(bamDir,'H3K9sicer_counts.RData'))")
+projDir <- "/homes/pschofield/Projects/hypoxia_sr/"
+tmpDir <- paste0(projDir,"tmp/")
+logDir <- paste0(projDir,"logs/")
+subScript(script=script,scriptstub="h3k9_",tmpdir=tmpDir, logdir=logDir,scriptext=".R",cores=8)
+system("ssh login.compbio.dundee.ac.uk 'qstat -u pschofield'")
+rsh("mq")
+rsh("aq")
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-673-index.Rmd")
+setwd("/Users/pschofield/git_hub/pietalib")
+qstat()
+qstat(user=*)
+qstat(user="*")
+qstat('*')
+rsh('qstat -u "*"')
+rsh("qstat -u '*'")
+devtools::document()
+devtools::load_all()
 devtools::install(reload=T)
-plotDat <- getWeek(startDate="2015-03-18",endDate="2015-03-25")
-plotDat <- getWeek(start="2015-03-11",end="2015-03-18")
-plotDat <- getWeek(startDate="2015-03-11",endDate="2015-03-18")
-gp <- ggplot(plotDat,aes(x=factor(1),y=percent,fill=Project))+
-geom_bar(width=1,stat="identity")+coord_polar(theta="y") + xlab("") + ylab("")
-kable(plotDat)
-base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-351-ts_2015_03.Rmd")
-outFile <- buildAll(projName,fileName,outstub="logs")
-view(outFile)
-q()
+qstat("*")
+qstat("pschofield")
+qstat("ngiang")
+qstat("ovickery")
+readLines(qstat("ovickery"))
+res<-qstat("ovickery")
+res
+parse(res)
+view("/Volumes/pschofield/Projects/pietalib/web/index.html")
+knit(input=paste0(localDir,"git_hub/",projName,"/wiki/",fileName,".Rmd"),
+output=paste0(localDir,"git_hub/",projName,".wiki/Home.md"))
+buildAll(projName,fileName,outdir=paste0(projDir,"web"),
+indir=paste0(localDir,"git_hub/",projName,"/wiki/"),explicit=T)
+require(pietalib)
+buildAll("Projects","index")
+H3K9sicer_counts.RData
+load(paste0(bamDir,'H3K9sicer_counts.RData'))
+ls()
+head(tt)
+hits <- annot[which(annot$GeneID %in% rownames(tt[which(tt$FDR<=0.05),])),]
+hits
+require(bumphunter)

@@ -11,16 +11,17 @@
 #' @param scriptext extention for the temporary file
 #' @param logdir location for the batch job logs
 #' @param cores number of cores
+#' @param nosub boolean to switch off actual submission but to create the tempfiles
 #'
 #' @export
-subScript <- function(scriptstub="ssh",script=c("#!/bin/bash","hostname"),
-                      tmpdir="/homes/pschofield/tmp/",scriptext=".sh",logdir="",cores=8)
+subScript <- function(scriptstub="ssh",script=c("#!/bin/bash","hostname"),scriptext=".sh",
+                      tmpdir="/homes/pschofield/tmp/",logdir="",cores=8,nosub=FALSE)
 {
   batchJob <- tempfile(pattern=scriptstub,tmpdir=tmpdir,fileext=scriptext)
   filecon <- file(batchJob)
   writeLines(script, filecon)
   close(filecon)
-  subJob(scriptfile=batchJob,logdir=logdir,mcCores=cores)
+  if(!nosub) subJob(scriptfile=batchJob,logdir=logdir,mcCores=cores)
 }
 
 

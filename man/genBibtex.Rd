@@ -4,7 +4,7 @@
 \alias{genBibtex}
 \title{genbibtex}
 \usage{
-genBibtex(packages, outfile)
+genBibtex(packages, outfile = "/Users/pschofield/git_tree/biblio/library.bib")
 }
 \arguments{
 \item{packages}{}

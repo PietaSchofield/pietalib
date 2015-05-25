@@ -4,7 +4,7 @@
 #' @param outfile
 #'
 #' @export
-genBibtex <- function(packages,outfile){
+genBibtex <- function(packages,outfile="/Users/pschofield/git_tree/biblio/library.bib"){
   res <- lapply(packages, 
           function(c){
             cit <- toBibtex(citation(c),style="Bibtex")

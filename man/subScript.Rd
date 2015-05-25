@@ -5,21 +5,23 @@
 \title{subScript will submit a script to the cluster}
 \usage{
 subScript(scriptstub = "ssh", script = c("#!/bin/bash", "hostname"),
-  tmpdir = "/homes/pschofield/tmp/", scriptext = ".sh", logdir = "",
-  cores = 8)
+  scriptext = ".sh", tmpdir = "/homes/pschofield/tmp/", logdir = "",
+  cores = 8, nosub = FALSE)
 }
 \arguments{
 \item{scriptstub}{the stub for the temporary file name}
 
 \item{script}{the content of the script as a vector of strings}
 
-\item{tmpdir}{location for the temporary file}
-
 \item{scriptext}{extention for the temporary file}
+
+\item{tmpdir}{location for the temporary file}
 
 \item{logdir}{location for the batch job logs}
 
 \item{cores}{number of cores}
+
+\item{nosub}{boolean to switch off actual submission but to create the tempfiles}
 }
 \description{
 calls subJob to submit a script to the cluster as a temporary file it relies on the temporary

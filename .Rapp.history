@@ -1,110 +1,39 @@
-require(Gviz)
-afrom <- start(wh)
-ato <- end(wh)
-ato
-afrom
-plt.hypo <- AlignmentsTrack(hypo,genome="hg19")
-require(RefManageR)
-dir("git_tree/biblio/")
-BibOptions(check.entries = F, style = "markdown", cite.style = "authoryear",
-bib.style = "authoryear")
-bib <- ReadBib("/Users/pschofield/git_tree/biblio/pgscv.bib",check=FALSE)
-TextCite(bib)
-PrintBibliography(bib)
-outFile <- buildAll("web_pages","index",outType="knitrBootstrap::bootstrap_document")
-require(BiocInstaller)
-biocLite("Pviz")
-chr="chr2"
-afrom==46591329
-ato=46616597
-plt.hypo <- AlignmentsTrack(hypo,genome="hg19",chromosome=chr)
-plotTracks(c(plt.hypo),from=afrom,to=ato)
-require(GenomicAlignments)
-hypo <- paste0(projDir,"web/data/NOBACK/gsu/hg19/merge/H3K4me3_H_merge.bam")
-aldat <- readGAlignments(hypo,param=ScanBamParam(which=wh))
-aldat
-plt.hypo <- AlignmentsTrack(aldat,genome="hg19",chromosome=chr, from=afrom, to=ato)
-plt.hypo <- AlignmentsTrack(hypo,genome="hg19",chromosome=chr, from=afrom, to=ato)
-ply.hypo
-str(plt.hypo)
-options(ucscChromosomeNames=FALSE)
-plt.hypo
-chr <- gsub("^chr","",as.character(seqnames(wh)))
-chr
-plotTracks(c(plt.hypo),chr=chr,from=afrom,to=ato)
-plt.ideo <- IdeogramTrack(genome="hg19",chromosome=chr)
-plt.ideo <- IdeogramTrack(genome="hg19",chromosome=paste0("chr",chr))
-chromosome(plt.ideo)
-chromosome(plt.ideo)<-chr
-chromosome(plt.epas)<-paste0("chr",chr)
-chromosome(plt.epas)
-chromosome(plt.hypo)<-paste0("chr",chr)
-plotTracks(c(plt.ideo,plt.epas,plt.hypo),chr=chr,from=afrom,to=ato)
-plotTracks(c(plt.ideo,plt.epas,plt.hypo),from=afrom,to=ato)
-plt.epas <- BiomartGeneRegionTrack(genome = "hg19",
-chromosome = chr, start = start(wh), end = end(wh),
-name = "ENSEMBL")
-plotTracks(c(plt.epas,plt.hypo),chr=chr,from=afrom,to=ato)
-data(genesymbol,package="biovizBase")
-wh
-seqnames(wh)
-as.charactre(seqnames(wh))
-as.character(seqnames(wh))
-wh <- range(genesymbol[c("EPAS1")],ignore.strand=T)
-seqlevels(wh) <- gsub("^chr","",seqlevels(wh))
-plt.epas <- BiomartGeneRegionTrack(genome = "hg19", range=wh, name = "ENSEMBL")
-plt.epas <- BiomartGeneRegionTrack(genome = "hg19", range=wh, name = "ENSEMBL",
-start=start(wh),end=end(wh))
-bamH <- paste0(projDir,"web/data/NOBACK/gsu/hg19/merge/H3K4me3_H_merge.bam")
-bamN <- paste0(projDir,"web/data/NOBACK/gsu/hg19/merge/H3K4me3_n_merge.bam")
-plt.epas <- BiomartGeneRegionTrack(genome = "hg19", chromosome=as.character(seqnames(wh)),
-plt.hypo <- AlignmentsTrack(hypo,genome="hg19",chromosome=chr, from=afrom, to=ato,
-type="coverage")
-base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-2288-note_2015_04.Rmd")
-plt.epas <- BiomartGeneRegionTrack(genome = "hg19", chromosome= chr,
-name = "ENSEMBL", start=start(wh),end=end(wh))
-plt.hypo <- AlignmentsTrack(bamH,genome="hg19",chromosome=chr, from=afrom, to=ato,
-type="coverage",name="hypo")
-plt.norm <- AlignmentsTrack(bamN,genome="hg19",chromosome=chr, from=afrom, to=ato,
-type="coverage",name="norm")
-plotTracks(c(plt.epas,plt.hypo,plt.norm),chr=chr,from=afrom,to=ato)
-buildAll
-outFile
-projName <- "hypoxia_sr"
-fileName <- "rep_h3k3peaks"
-outFile <- buildAll(projName,fileName,outstub=outStub,outType="word_document")
-indir="/Users/pschofield/git_hub/Private/CVs/",
-outdir="/Users/pschofield/Projects/Private/",
-system(paste0("open ",outFile))
-outdir="/Users/pschofield/Projects/hypoxia_sr/web/docs/",
-outFile <- buildAll(projName,fileName,outstub=outStub,explicit=TRUE,
-indir="/Users/pschofield/git_tree/hypoxia_sr/",
-outdir="/homes/pschofield/Projects/hypoxia_sr/web/docs/",
-outType="html_document")
-help(list.files)
-list.files("/homes/pschofield/Projects/hypoxia_sr/web/data/analysis/",pattern="h3k4",recursive=T)
-list.files("/homes/pschofield/Projects/hypoxia_sr/web/data/analysis/",pattern="H3K4",recursive=T)
-np.files <- list.files(paste0(projDir,"web/data/analysis/",
-np.files <- list.files(paste0(projDir,"web/data/analysis/"),
-pattern="H3K4.*narrowPeak",recursive=T)
-np.files <- list.files(paste0(projDir,"web/data/analysis/gsu/hg19/merge/"),
-np
-np.files <- list.files(paste0(projDir,"web/data/analysis/gsu/hg19/merge"),
-pattern="H3K4.*narrowPeak",recursive=T,full=T)
-np.fiels
-np.files
-require(derfinder)
-citation(derfinder)
-citation("derfinder")
-bibtex::toBibtex(citation("derfinder"))
-toBibtex(citation("derfinder"))
+help(knitr)
+knit("git_hub/Private/pages/sexandgender.Rnw")
+knit::render_sweave("git_hub/Private/pages/sexandgender.Rnw")
+knitr::render_sweave("git_hub/Private/pages/sexandgender.Rnw")
+render_sweave()
+render_latex()
+dir()
+system("pdflatex git_hub/Private/pages/sexandgender.tex")
+help(buildAll)
+require(knitr)
+require(pietalib)
 setwd("/Users/pschofield/git_hub/pietalib")
+devtools::use_testthat()
+install.packages("devtools")
 devtools::document()
 devtools::load_all()
 devtools::install(reload=T)
-genBibtex("derfinder")
-require(histoneHMM)
-genBibtex("histoneHMM")
-base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-2288-rep_h3k4peaks.Rmd")
-delete(bib)
+devtools::install.github("PietaSchofield/SpikeNorm")
+devtools::install_github("hadley/devtools")
+devtools::install_github("PietaSchofield/SpikeNorm")
+require(BiocInstaller)
+biocLite()
+biocLite(pkgs=("limma","edgeR"))
+biocLite(pkgs=c("limma","edgeR"))
+devtools::install_github("PietaSchofield/SpikeNorm",username="PietaSchofield",auth_token="2ed11ebd4dbd6301f2e2b3c47e862f6bc45be6c3")
+biocLite(pkgs=c("GenomicAlignments","rtracklayer","GenomicFeatures"))
+install.packages("RefManageR")
+install.packages("knitrBootstrap")
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-474-note_2015_06.Rmd")
+require(knitrBootstrap)
+outFile <- buildAll(projName,fileName,outstub=outStub,
+outType="knitrBootstrap::bootstrap_document")
+library(devtools)#
+install_github('rstudio/rmarkdown')#
+install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.org'),#
+                 type = 'source')#
+install_github('jimhester/knitrBootstrap')
+require(devtools)
 q()

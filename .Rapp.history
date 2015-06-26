@@ -1,39 +1,250 @@
-help(knitr)
-knit("git_hub/Private/pages/sexandgender.Rnw")
-knit::render_sweave("git_hub/Private/pages/sexandgender.Rnw")
-knitr::render_sweave("git_hub/Private/pages/sexandgender.Rnw")
-render_sweave()
-render_latex()
-dir()
-system("pdflatex git_hub/Private/pages/sexandgender.tex")
-help(buildAll)
-require(knitr)
-require(pietalib)
+plotMixFits(dgeSCn,normType="mix.fit",cpkb=T)
+plotMixFits(dgeSCn,normType="mix.fit",cpkb=F)
+plotMixFits(dgeSCn,fit=F,cpkb=F)
+plotMixFits(dgeSCn,fit=F,cpkb=T)
+plotMixFits(dgeSC,fit=F,cpkb=T)
+plotMixFits(dgeSC,fit=F,cpkb=F)
+longForm.spikenorm(dgeSC)
+longForm.spikenorm(dgeSC,rmZeros=T)
+dgeSC
+genes=annoYeast,robust="none",cpkb=T)
+genes=annoYeast,robust="none",cpkb=F)
+genes=annoYeast,robust="mbis",cpkb=F)
+genes=annoYeast,robust="quan",cpkb=F)
+genes=annoYeast,robust="quan",cpkb=T)
+dgeSC$contrastFits
+DGE<-dgeSC
+normType<-"none.fit"
+con1<-"mix1"
+con2<-"mix2"
+cond<-"mix"
+features<-"countSpikes"
+if(alt){
+}else{
+vlDF <- as.data.frame(x=vlines)
+ggplot2::ggplot(ttN, ggplot2::aes(x=logFC,y=log2(FDR))) +
+ggplot2::geom_point(size=3, ggplot2::aes(colour = logCPM)) +
+ggplot2::scale_colour_gradient(high = 2, low = 4 ) +
+ggplot2::geom_abline(intercept=log2(0.05), slope=0,colour="red") +
+ggplot2::geom_vline(data=vlDF,xintercept=vlines,color="yellow")
+}
+expFC <- log2(DGE$concSpikes[,con1]/DGE$concSpikes[,con2])
+names(expFC) <- rownames(DGE$concSpikes)
+ggplot2::ggplot(spNorm) +
+ggplot2::geom_point(ggplot2::aes(x=expFC,y=logFC)) +
+ggplot2::geom_abline(ggplot2::aes(intercept=0,slope=1,colour="red")) +
+ggplot2::xlab("mix concentration log fold change") +
+ggplot2::ylab("spike read count log fold change")
+expFC
+head(spNorm)
+as.data.frame(expFC)
+spNorm <- merge(ttN,as.data.frame(expFC),by="row.names")
+spNorm
+ttN
+rownames(ttN)
+colnames(ttN)
+head(ttN)
+ttN <- spikeDE(DGE,normType=normType,con1=con1,con2=con2,
+cond=cond,features=features)
+fitN <- calcGLMFit(DGE,normType=normType,dataSet=features,cond=cond)
+cntrst <- paste0(con1,"-",con2)
+mixes <- limma::makeContrasts(contrasts=cntrst, levels=fitN$design)
+lrtN <- edgeR::glmLRT(fitN,contrast=mixes)
+lrtN
+setwd(devDir)
+devtools::test()
+knit(input=paste0(locDir,"git_hub/",projName,"/wiki/",fileName,".Rmd"),
+output=paste0(locDir,"git_hub/",projName,
+".wiki/dev/calcSpikeNorm-Development.md"))
+sampleData=factsYeast,rmZeros=T,
+geneSeqs=annoYeast,robust="quan",cpkb=T)
+devtools::load_all(reset=T)
+devtools::install(reload=T)
+dgeSC <- calcSpikeNorm(countData=as.matrix(exprsYeast),
+sampleData=factsYeast,
+geneSeqs=annoYeast)
+plotSpikeDE(dgeSC)
+plotSpikeDE(dgeSC,normType="mix.fit")
+plotSpikeDE(dgeSC,alt=T)
+plotSpikeDE(dgeSC,normType="mix.fit",alt=T)
+plotMixFits(dgeSC)
+table(width(annoERCC))
+MASS::truehist(width(annoERCC))
+MASS::truehist(width(annoERCC),n=20)
+MASS::truehist(width(annoERCC),n=30)
+MASS::truehist(width(annoERCC),n=50)
+require(MASS)
+help(truehist)
+MASS::truehist(width(annoERCC),n=50,prob=F)
+MASS::truehist(width(annoERCC),n=100,prob=F)
+MASS::truehist(width(annoERCC),n=50,prob=F,xlab="length of spike-in")
+MASS::truehist(width(annoERCC),n=100,prob=F,xlab="length of spike-in")
+plotMixFits(dgeSC,cpkb=T)
+plotMixFits(dgeSC,cpkb=F,rmZeros=T)
+plotMixFits(dgeSC,cpkb=T,rmZeros=T)
+dgeAT <- calcSpikeNorm(countData=as.matrix(genesArabidopsis),
+countSpikes=as.matrix(spikeArabidopsis),
+geneSeqs=annoArabidopsis,
+sampleData=factsArabidopsis,
+concSpikes=concsERCC,robust="quan")
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-2536-SpikeNormSummary.Rmd")
+install.packages("lmtest")
+require(lmtest)
+genbibtex
+genBibtex
+genBibtex(c("lmtest","quanreg"))
+genBibtex(c("lmtest","quantreg"))
+citation("lmtest")
+cite<-toBibtex(citation("RUVSeq"))
+cite
+cite[1]
+cite[grepl("author",cite)]
+cite[grepl("year",cite)]
+example(regmatches)
+regmatches("\\[{].*[}]",cite[grepl("year",cite)])
+regmatches("[{].*[}]",cite[grepl("year",cite)])
+regexpr("[{].*[}]",cite[grepl("year",cite)])
+x<-regexpr("[{].*[}]",cite[grepl("year",cite)])
+substr(cite[grepl("year",cite)],x[1])
+substr(cite[grepl("year",cite)],x[1],x[2])
+str(x)
+x[2]
+x["match.length"]
+x["match.length"]is
+is(x)
+attributes(x)
+attributes(x)$match.length
+attr(x)
+attr(x,"match.lenth")
+attr(x,"match.length")
+substr(cite[grepl("year",cite)],x,attr(x[1],"match.length"))
+substr(cite[grepl("year",cite)],x,attr(x,"match.length"))
+x
+x[1]
+substr(cite[grepl("year",cite)],x[1],attr(x,"match.length"))
+substr(cite[grepl("year",cite)],x[1],x[1]+attr(x,"match.length"))
+citation("MASS")
+c<-toBibtex(citation("quantreg"),style="Bibtex")
+city <- cit[grepl("year",cit)]
+cita <- cit[grepl("author",cit)]
+cit[1] <- gsub("[{]","{c",cit[1])
+write(cit,file=outfile,append=T)
+cita
+.getfield(c,"author")
+c
+.getfield(c,"year")
+m <- regexpr("^.*[,$]|and",txt)
+c<-"robust"
+txt<-.getfield(cit,"author")
+m <- regexpr("^.*[,]|and",txt)
+m <- regexpr("^.*([,]|and)",txt)
+regexpr("^.*(,|and)",txt)
+regexpr("^.*and",txt)
+regexpr("(?<=^)(.*)(and)",txt)
+regexpr("(^)(.*)(and)",txt)
+regexpr("^.*?and",txt)
+regexpr("^.*?(,|and)",txt)
+.parsename(txt)
+tolower(.getauthor(cit))
+cit<-genBibtex("quantreg",db=T)
+.getcitkey(cit)
+.getfield(cit,author)
+.getfield(cit,"author")
+grepl("author",cit)
+cit(grepl("author",cit))
+txt<-"Roger Koenker"
+c<-"quantreg"
+.getauthor(cit)
+m <- regexpr("^.*?([,$]|and)",txt)
+txt
+m <- regexpr("^.*?(,|and|$)",txt)
+txt <- .getfield(cit,"author")
+m <- regexpr("^.*?(,|and|)",txt)
+tail(strsplit(gsub(" and","",
+substr(txt,(m[1]),(m[1]+attr(m,"match.length")-1))),
+" ")[[1]],1)
+m
+genBibtex("quantreg",db=T)
+genBibtex("robust",db=T)
+c<-"robustbase"
+paste0(tolower(.getauthor(cit)),":",.getfield(cit,"year"),",")
+ncit <- grepl("@",cit)
+strsplit(cit,"@")
+strsplit(cit,"@")[[1]]
+ncit <- which(grepl("@",cit))
+cit[1:8]
+unname(cit[1:8])
+unname(cit[1:8])[1]
+unname(cit[1:8])[2]
+unname(cit[1:8])[4]
+unname(cit[9:])
+unname(cit[9:length(cit)])
+end=c(which(grepl("@",cit)-1),length(cit))[-1])
+ncit <- cbind(begin=which(grepl("@",cit)),
+end=c(which(grepl("@",cit)),length(cit))[-1])
+lapply(ncit,print)
+lapply(ncit,function(n)cit[n$begin:n$end])
+lapply(ncit,function(n)cit[n["begin"]:n["end"])
+lapply(ncit,function(n)cit[n["begin"]:n["end"]])
+ncit[1,]
+t(ncit)[1]
+t(ncit)[1,]
+t(ncit)[,]
+ncit[,]
+list(ncit)
+list(ncit)[[1]]
+ncit <- as.data.frame(cbind(begin=which(grepl("@",cit)),
+end=c(which(grepl("@",cit)),length(cit))[-1]))
+ncit[2]
+ncit <- as.data.frame(t(cbind(begin=which(grepl("@",cit)),
+end=c(which(grepl("@",cit)),length(cit))[-1])))
+ncit[1]
+ncit[1][1]
+ncit <-map(c,which(grepl("@",cit)),
+cit <- toBibtex(citation(c),style="Bibtex")
+ncit <- Map(c,which(grepl("@",cit)),
+c(which(grepl("@",cit)),length(cit))[-1])
+ncit <- Map(c,as.numeric(which(grepl("@",cit))),
+as.numeric(c(which(grepl("@",cit)),length(cit))[-1]))
+as.numeric(which(grepl("@",cit)))
+begin <- as.numeric(which(grepl("@",cit)))
+endin <- as.numeric(c(which(grepl("@",cit)),length(cit))[-1]))
+endin <- as.numeric(c(which(grepl("@",cit)),length(cit))[-1])
+endin
+is(begin)
+is(end)
+is(endin)
+is(unname(endin))
+as.list(begin)
+ncit <- mapply(c,begin,endin,SIMPLIFY=FALSE)
+begin
+help(Map)
+rm(c)
+ncit <- base::Map(c,begin,endin)
+lapply(ncit,function(n)cit[n[1]:n[2]])
+lapply(ncit,function(n)unname(cit[n[1]:n[2]]))
+cc<-"robustbase"
+cit <- toBibtex(citation(cc),style="Bibtex")
+begin <- as.list(which(grepl("@",cit)))
+endin <- as.list(c(which(grepl("@",cit)),length(cit))[-1])
+ncit <- Map(c,begin)
+ncit
+ncit <- Map(c,begin,endin)
+cn <- unlist(cit[n[1]:(n[2]-1)])
+lapply(ncit,
+function(n){
+cn <- unname(cit[n[1]:(n[2]-1)])
+cn[1] <- gsub("[{].*[,]", paste0("{ ",.getcitkey(cn)),cn[1])
+cn
+})
+genBibtex("robustbase",db=T)
+traceback
+traceback()
+cit <- .addcitekey(cc)
+cit
+base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-2536-genBibtex.R")
+genBibtex("robustbase")
 setwd("/Users/pschofield/git_hub/pietalib")
 devtools::use_testthat()
-install.packages("devtools")
 devtools::document()
-devtools::load_all()
-devtools::install(reload=T)
-devtools::install.github("PietaSchofield/SpikeNorm")
-devtools::install_github("hadley/devtools")
-devtools::install_github("PietaSchofield/SpikeNorm")
-require(BiocInstaller)
-biocLite()
-biocLite(pkgs=("limma","edgeR"))
-biocLite(pkgs=c("limma","edgeR"))
-devtools::install_github("PietaSchofield/SpikeNorm",username="PietaSchofield",auth_token="2ed11ebd4dbd6301f2e2b3c47e862f6bc45be6c3")
-biocLite(pkgs=c("GenomicAlignments","rtracklayer","GenomicFeatures"))
-install.packages("RefManageR")
-install.packages("knitrBootstrap")
-base::source("/var/folders/w2/j88z6b513vl7vf5cd6727t8w0000gn/T//r-plugin-pschofield/Rsource-474-note_2015_06.Rmd")
-require(knitrBootstrap)
-outFile <- buildAll(projName,fileName,outstub=outStub,
-outType="knitrBootstrap::bootstrap_document")
-library(devtools)#
-install_github('rstudio/rmarkdown')#
-install.packages('knitr', repos = c('http://rforge.net', 'http://cran.rstudio.org'),#
-                 type = 'source')#
-install_github('jimhester/knitrBootstrap')
-require(devtools)
 q()

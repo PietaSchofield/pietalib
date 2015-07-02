@@ -4,7 +4,7 @@
 \alias{addCite}
 \title{include citation for package in markdown}
 \usage{
-addCite(bib, packages, type = "T")
+addCite(packages, type = "T", bib = NULL)
 }
 \arguments{
 \item{packages}{}

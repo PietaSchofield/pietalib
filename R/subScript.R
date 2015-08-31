@@ -15,13 +15,14 @@
 #'
 #' @export
 subScript <- function(scriptstub="ssh",script=c("#!/bin/bash","hostname"),scriptext=".sh",
-                      tmpdir="/homes/pschofield/tmp/",logdir="",cores=8,nosub=FALSE)
+                      tmpdir="/homes/pschofield/tmp/",logdir="",cores=8,nosub=FALSE,
+                      args=NULL)
 {
   batchJob <- tempfile(pattern=scriptstub,tmpdir=tmpdir,fileext=scriptext)
   filecon <- file(batchJob)
   writeLines(script, filecon)
   close(filecon)
-  if(!nosub) subJob(scriptfile=batchJob,logdir=logdir,mcCores=cores)
+  if(!nosub) subJob(scriptfile=batchJob,logdir=logdir,mcCores=cores,args=args)
 }
 
 

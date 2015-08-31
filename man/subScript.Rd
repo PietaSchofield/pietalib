@@ -6,7 +6,7 @@
 \usage{
 subScript(scriptstub = "ssh", script = c("#!/bin/bash", "hostname"),
   scriptext = ".sh", tmpdir = "/homes/pschofield/tmp/", logdir = "",
-  cores = 8, nosub = FALSE)
+  cores = 8, nosub = FALSE, args = NULL)
 }
 \arguments{
 \item{scriptstub}{the stub for the temporary file name}

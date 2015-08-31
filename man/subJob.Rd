@@ -5,7 +5,7 @@
 \title{Submit a job to the cluster}
 \usage{
 subJob(scriptfile, user = "pschofield", host = "login.compbio.dundee.ac.uk",
-  logdir = "/homes/pschofield/tmp/", mcCores = 1)
+  logdir = "/homes/pschofield/tmp/", mcCores = 1, args = NULL)
 }
 \arguments{
 \item{user}{a string with the user name of the person making the ssh connection}

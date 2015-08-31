@@ -10,7 +10,7 @@
 #'
 #' @export 
 subJob <- function(scriptfile,user="pschofield", host="login.compbio.dundee.ac.uk",
-                   logdir="/homes/pschofield/tmp/", mcCores=1)
+                   logdir="/homes/pschofield/tmp/", mcCores=1,args=NULL)
 {
   jobString <- paste0("chmod +x ",scriptfile,";\n",
                       "/gridware/sge/bin/lx-amd64/qsub",
@@ -18,6 +18,7 @@ subJob <- function(scriptfile,user="pschofield", host="login.compbio.dundee.ac.u
                       " -e ",logdir,
                       " -pe smp ",mcCores,
                       " -R yes ",scriptfile)
+  if(!is.null(args)) jobString=paste0(jobString," ",args)
   system(paste0("ssh -T ",user,"@",host," '",jobString,"'"),intern=T) 
 }
 

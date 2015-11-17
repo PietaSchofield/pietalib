@@ -27,7 +27,6 @@ readPrism <- function(filename){
                                 XML::xpathApply(cc,"./d",XML::xmlValue)
                               }))
                           }))
-               
               # get the rownames
               rowT <- plyr::ldply(XML::xpathApply(tb,".//YColumn",
                         function(yc){

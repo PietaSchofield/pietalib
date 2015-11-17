@@ -1,7 +1,7 @@
 #' readENCODE read broadPeak and narrowPeak formats and return a GRanges object
 #'
-#' @param filename 
-#'
+#' @param filename
+#' @import GenomicRanges
 #' @export
 readENCODE <- function(fn){
   type <- tail(strsplit(basename(fn),"[.]")[[1]],1)

@@ -5,6 +5,9 @@
 #' @param layout: A matrix specifying the layout. If present, 'cols' is ignored.
 #'
 #' @description
+#' This function comes from here
+#' http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
+#'
 #' If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
 #'     then plot 1 will go in the upper left, 2 will go in the upper right, and
 #'     3 will go all the way across the bottom.

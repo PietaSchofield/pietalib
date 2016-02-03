@@ -4,10 +4,18 @@
 \alias{publish}
 \title{Publish all relevant files from the local directory to my public_html tree}
 \usage{
-publish(filePath, note = T, outStub = NULL, delete = F)
+publish(filePath, note = T, outStub = NULL, delete = F, open = T)
 }
 \arguments{
-\item{rstudio}{}
+\item{filePath}{full name of the markdown file from which the html was generated}
+
+\item{note}{publish to the notebook directory}
+
+\item{outStub}{name of subdirectory to publish to}
+
+\item{delete}{delete the local files after copying}
+
+\item{open}{open the file on publishing}
 }
 \description{
 Publish all relevant files from the local directory to my public_html tree

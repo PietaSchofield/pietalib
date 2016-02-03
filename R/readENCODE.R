@@ -1,11 +1,12 @@
 #' readENCODE read broadPeak and narrowPeak formats and return a GRanges object
 #'
-#' @param filename
+#' @param filename filename to import
+#'
 #' @import GenomicRanges
 #' @export
-readENCODE <- function(fn){
-  type <- tail(strsplit(basename(fn),"[.]")[[1]],1)
-  pks <- read.delim(fn,head=F,sep="\t")
+readENCODE <- function(filename){
+  type <- tail(strsplit(basename(filename),"[.]")[[1]],1)
+  pks <- read.delim(filename,head=F,sep="\t")
   if(type=="narrowPeak"){
     colnames(pks) <- c("seqnames","start","end","name","score","strand","signal","pValue",
                        "qValue","peak")

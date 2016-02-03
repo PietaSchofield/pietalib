@@ -1,10 +1,7 @@
-#' create a new project
+#' create a new notebook file
 #'
-#' @param name
-#' @param root
-#' @param noidx
-#' @param noDir
-#' @param noWWW
+#' @param name project name
+#' @param root default project root directory
 #'
 #' @export
 newNote <- function(name=NULL,root="/Users/pschofield/git_tree/"){

@@ -3,9 +3,9 @@
 #' Takes a file name and squirts the info into the time recording database. It will check if
 #' data already exists for the dates and stop rather than write duplicate entries.
 #'
-#' @param fileName
-#' @param projDir
-#' @param dbName
+#' @param fileName name of officetime output file
+#' @param projDir default directory of the project
+#' @param dbName default name of the timesheet sqlite database
 #'
 #' @export
 logTime <- function(fileName=NULL, projDir="/Users/pschofield/Projects/time_sheet/",
@@ -41,13 +41,13 @@ logTime <- function(fileName=NULL, projDir="/Users/pschofield/Projects/time_shee
   dat$Pno <- sapply(dat$Project,function(x) gsub("[] ]","",tail(strsplit(x,"[[]")[[1]],1)))
   dat$Project <- sapply(dat$Project,function(x) head(strsplit(x,"[[]")[[1]],1))
   if(!("sessions"%in%RSQLite::dbListTables(db))){
-    RSQLite::dbWriteTable(db,"sessions",dat) 
+    RSQLite::dbWriteTable(db,"sessions",dat)
   }else{
     if("tmpTable" %in% RSQLite::dbListTables(db))
       RSQLite::dbSendQuery(db,"drop table tmpTable")
     RSQLite::dbWriteTable(db,"tmpTable",dat)
     RSQLite::dbSendQuery(db,paste0("insert into sessions select * from tmpTable"))
-  } 
+  }
   if(!("uploads"%in%RSQLite::dbListTables(db))){
     RSQLite::dbWriteTable(db,"uploads",uploads)
   }else{
@@ -56,5 +56,5 @@ logTime <- function(fileName=NULL, projDir="/Users/pschofield/Projects/time_shee
     RSQLite::dbWriteTable(db,"tmpTable",uploads)
     RSQLite::dbSendQuery(db,paste0("insert into uploads select * from tmpTable"))
   }
-  RSQLite::dbDisconnect(db) 
+  RSQLite::dbDisconnect(db)
 }

@@ -6,7 +6,8 @@
 \usage{
 subScript(scriptstub = "ssh", script = c("#!/bin/bash", "hostname"),
   scriptext = ".sh", tmpdir = "/homes/pschofield/tmp/", logdir = "",
-  cores = 8, nosub = FALSE, args = NULL)
+  cores = 8, nosub = FALSE, email = "as", queue = NULL,
+  emailAddress = "p.schofield@dundee.ac.uk", args = NULL)
 }
 \arguments{
 \item{scriptstub}{the stub for the temporary file name}
@@ -22,6 +23,14 @@ subScript(scriptstub = "ssh", script = c("#!/bin/bash", "hostname"),
 \item{cores}{number of cores}
 
 \item{nosub}{boolean to switch off actual submission but to create the tempfiles}
+
+\item{email}{job status email settings}
+
+\item{queue}{queue name}
+
+\item{emailAddress}{where to send job status emails}
+
+\item{args}{any arguments to add to the job submission string}
 }
 \description{
 calls subJob to submit a script to the cluster as a temporary file it relies on the temporary

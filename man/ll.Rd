@@ -19,7 +19,13 @@ ll(name = NULL, pos = 1L, envir = as.environment(pos), allNames = FALSE,
 
 \item{pattern}{see ls()}
 
-\item{n}{}
+\item{decreasing}{reverse direction}
+
+\item{head}{restrict number}
+
+\item{n}{number to list}
+
+\item{orderBy}{field to orderby}
 }
 \description{
 This is a steal however it probably needs a rewrite in the plyr world

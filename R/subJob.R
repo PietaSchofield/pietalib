@@ -6,15 +6,20 @@
 #' @param user a string with the user name of the person making the ssh connection
 #' @param host a string with the name of the login host for the cluster
 #' @param logDir a string with the location of where the job logs files will be stored
+#' @param queue queue name
 #' @param mcCores an integer for the number of cores to request
+#' @param email job status email setting
+#' @param emailAddress where to send job status emails
+#' @param args any arguments to add to the job submission string
 #'
 #' @export
 subJob <- function(scriptfile,user="pschofield", host="login.compbio.dundee.ac.uk",
-                   logdir="/homes/pschofield/tmp/", mcCores=1,email="ae",
+                   logdir="/homes/pschofield/tmp/", mcCores=1,email="as",queue=NULL,
                    emailAddress="p.schofield@dundee.ac.uk",args=NULL)
 {
   jobString <- paste0("chmod +x ",scriptfile,";\n",
                       "/gridware/sge/bin/lx-amd64/qsub",
+                      ifelse(is.null(queue)," ",paste0(" -q ",queue)),
                       " -o ",logdir,
                       " -e ",logdir,
                       " -pe smp ",mcCores,

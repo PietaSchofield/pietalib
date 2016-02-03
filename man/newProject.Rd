@@ -8,7 +8,15 @@ newProject(name = NULL, root = "/Users/pschofield/git_tree/", noidx = F,
   noDir = F, noWWW = F)
 }
 \arguments{
-\item{noWWW}{}
+\item{name}{name of project}
+
+\item{root}{root directory for project directory}
+
+\item{noidx}{don't create a default index.Rmd file}
+
+\item{noDir}{don't create an output directory}
+
+\item{noWWW}{don't create a soft link under public_html on server}
 }
 \description{
 create a new project

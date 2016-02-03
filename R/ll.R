@@ -7,15 +7,15 @@
 #' @param pattern see ls()
 #' @param allNames see ls()
 #' @param envir see ls()
-#' @param orderBy
-#' @param decreasing
-#' @param head
-#' @param n
+#' @param orderBy field to orderby
+#' @param decreasing reverse direction
+#' @param head restrict number
+#' @param n number to list
 #'
 #' @export
-ll <- function (name=NULL, pos = 1L, envir = as.environment(pos),allNames = FALSE, 
+ll <- function (name=NULL, pos = 1L, envir = as.environment(pos),allNames = FALSE,
                 pattern=".*", order.by=NULL, decreasing=FALSE, head=FALSE, n=100) {
-    
+
     napply <- function(names, fn) sapply(names, function(x) fn(get(x, pos = pos)))
 
     objs <- ls(pos = pos, pattern = pattern)
@@ -26,7 +26,7 @@ ll <- function (name=NULL, pos = 1L, envir = as.environment(pos),allNames = FALS
       obj.size <- napply(objs, object.size)
       obj.prettysize <- sapply(obj.size, function(r) prettyNum(r, big.mark = ",") )
       obj.dim <- t(napply(objs, function(x) as.numeric(dim(x))[1:2]))
- 
+
       vec <- is.na(obj.dim)[, 1] & (obj.type != "function")
       obj.dim[vec, 1] <- napply(objs, length)[vec]
 

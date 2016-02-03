@@ -5,8 +5,8 @@
 \title{Submit a job to the cluster}
 \usage{
 subJob(scriptfile, user = "pschofield", host = "login.compbio.dundee.ac.uk",
-  logdir = "/homes/pschofield/tmp/", mcCores = 1, email = "ae",
-  emailAddress = "p.schofield@dundee.ac.uk", args = NULL)
+  logdir = "/homes/pschofield/tmp/", mcCores = 1, email = "as",
+  queue = NULL, emailAddress = "p.schofield@dundee.ac.uk", args = NULL)
 }
 \arguments{
 \item{user}{a string with the user name of the person making the ssh connection}
@@ -14,6 +14,14 @@ subJob(scriptfile, user = "pschofield", host = "login.compbio.dundee.ac.uk",
 \item{host}{a string with the name of the login host for the cluster}
 
 \item{mcCores}{an integer for the number of cores to request}
+
+\item{email}{job status email setting}
+
+\item{queue}{queue name}
+
+\item{emailAddress}{where to send job status emails}
+
+\item{args}{any arguments to add to the job submission string}
 
 \item{batchFile}{a string representing the name of the script file to be submitted}
 

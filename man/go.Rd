@@ -2,14 +2,11 @@
 % Please edit documentation in R/go.R
 \name{go}
 \alias{go}
-\title{edit a file}
+\title{edit most recent note}
 \usage{
-go(filename, rstudio = T)
-}
-\arguments{
-\item{rstudio}{}
+go()
 }
 \description{
-edit a file
+edit most recent note
 }
 

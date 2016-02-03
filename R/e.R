@@ -1,7 +1,7 @@
 #' edit a file
 #'
-#' @param filename
-#' @param rstudio
+#' @param filename filename to edit
+#' @param rstudio open in Rstudio (if not open in MacVim)
 #'
 #' @export
 e <- function(filename,rstudio=T){

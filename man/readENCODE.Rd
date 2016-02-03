@@ -4,7 +4,10 @@
 \alias{readENCODE}
 \title{readENCODE read broadPeak and narrowPeak formats and return a GRanges object}
 \usage{
-readENCODE(fn)
+readENCODE(filename)
+}
+\arguments{
+\item{filename}{filename to import}
 }
 \description{
 readENCODE read broadPeak and narrowPeak formats and return a GRanges object

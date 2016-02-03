@@ -10,7 +10,11 @@ logTime(fileName = NULL, projDir = "/Users/pschofield/Projects/time_sheet/",
   dbName = "timeSheet.db")
 }
 \arguments{
-\item{dbName}{}
+\item{fileName}{name of officetime output file}
+
+\item{projDir}{default directory of the project}
+
+\item{dbName}{default name of the timesheet sqlite database}
 }
 \description{
 Load data from OfficeTime export into my time recording DB

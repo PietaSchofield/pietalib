@@ -2,14 +2,16 @@
 % Please edit documentation in R/newNote.R
 \name{newNote}
 \alias{newNote}
-\title{create a new project}
+\title{create a new notebook file}
 \usage{
 newNote(name = NULL, root = "/Users/pschofield/git_tree/")
 }
 \arguments{
-\item{noWWW}{}
+\item{name}{project name}
+
+\item{root}{default project root directory}
 }
 \description{
-create a new project
+create a new notebook file
 }
 

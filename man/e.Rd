@@ -7,7 +7,9 @@
 e(filename, rstudio = T)
 }
 \arguments{
-\item{rstudio}{}
+\item{filename}{filename to edit}
+
+\item{rstudio}{open in Rstudio (if not open in MacVim)}
 }
 \description{
 edit a file

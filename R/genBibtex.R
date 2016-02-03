@@ -1,7 +1,7 @@
 #' genbibtex
 #'
-#' @param packages
-#' @param outfile
+#' @param packages package names to add citations from
+#' @param outfile file of bibtex file to add citations to
 #'
 #' @export
 genBibtex <- function(packages,

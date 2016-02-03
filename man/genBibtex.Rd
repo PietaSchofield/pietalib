@@ -8,7 +8,9 @@ genBibtex(packages, db = F,
   outfile = "/Users/pschofield/git_tree/biblio/library.bib")
 }
 \arguments{
-\item{outfile}{}
+\item{packages}{package names to add citations from}
+
+\item{outfile}{file of bibtex file to add citations to}
 }
 \description{
 genbibtex

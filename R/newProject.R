@@ -1,10 +1,10 @@
 #' create a new project
 #'
-#' @param name
-#' @param root
-#' @param noidx
-#' @param noDir
-#' @param noWWW
+#' @param name name of project
+#' @param root root directory for project directory
+#' @param noidx don't create a default index.Rmd file
+#' @param noDir don't create an output directory
+#' @param noWWW don't create a soft link under public_html on server
 #'
 #' @export
 newProject <- function(name=NULL,root="/Users/pschofield/git_tree/",noidx=F,noDir=F,noWWW=F){

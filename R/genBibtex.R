@@ -37,7 +37,7 @@ genBibtex <- function(packages,
 }
 
 .getcitkey <- function(cit){
-  paste0(tolower(.getauthor(cit)),":",.getfield(cit,"year"))
+  paste0(tolower(.getauthor(cit)),.getfield(cit,"year"))
 }
 
 .addcitekey <- function(cc){

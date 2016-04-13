@@ -9,7 +9,7 @@ readMEME <- function( filename ) {
   file <- XML::xmlParse( file = filename, getDTD = FALSE )
   motifs <- list()
   motifs$motifs <- plyr::ldply(XML::xpathApply(file,"//motif",XML::xmlAttrs))
-  motifs$scansitesum <- plyr::ldply(XML::xpathApply(file,"//scanned_sites",xmlAttrs))
+  motifs$scansitesum <- plyr::ldply(XML::xpathApply(file,"//scanned_sites",XML::xmlAttrs))
 
   motifs$pwm <- XML::xpathApply(file,"//probabilities",
           function(tb){
@@ -32,9 +32,9 @@ readMEME <- function( filename ) {
 
   motifs$contSites <- XML::xpathApply(file,"//contributing_sites",
     function(cs){
-        attr <- plyr::ldply(XML::xpathApply(cs,".//contributing_site",xmlAttrs))
-        lf <- XML::xpathSApply(cs,".//left_flank",xmlValue)
-        rf <- XML::xpathSApply(cs,".//right_flank",xmlValue)
+        attr <- plyr::ldply(XML::xpathApply(cs,".//contributing_site",XML::xmlAttrs))
+        lf <- XML::xpathSApply(cs,".//left_flank",XML::xmlValue)
+        rf <- XML::xpathSApply(cs,".//right_flank",XML::xmlValue)
         site <- XML::xpathSApply(cs,".//contributing_site",
                 function(css){
                   paste0(XML::xpathSApply(css, ".//letter_ref",XML::xmlAttrs),collapse="")
@@ -46,12 +46,9 @@ readMEME <- function( filename ) {
   names(motifs$contSites) <- motifs$motifs$id
   names(motifs$pwm) <- motifs$motifs$id
 
-  motifs$motifs$consensus <- sapply( motifs$pwm, function( PWM ) {
-    pos <- apply( PWM, 2, which.max )
-    paste( rownames(PWM)[ pos ], collapse = '' )
-  })
-
-  motifs$motifs$regexp <- gsub("\n","",XML::xpathSApply(file,"//regular_expression",xmlValue))
+  motifs$motifs$consensus <- sapply(motifs$pwm,function(pm)
+    paste(rownames(pm)[apply(pm,2,which.max)],collapse=''))
+  motifs$motifs$regexp <- gsub("\n","",XML::xpathSApply(file,"//regular_expression",XML::xmlValue))
   return(motifs)
 }
 

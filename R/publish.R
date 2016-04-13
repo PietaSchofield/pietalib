@@ -13,7 +13,7 @@ publish <- function(filePath,note=T,outStub=NULL,delete=F,open=T){
   projName <- basename(devDir)
   devDir <- paste0(devDir,"/")
   if(note) outStub <- "notebook"
-  outDir <- paste0("/Volumes/pschofield/Projects/",projName,"/web/",outStub,"/")
+  outDir <- paste0("/Volumes/pschofield/public_html/Projects/",projName,"/",outStub,"/")
 
   system(paste0("sed -i.bak 's/libs\\//\\/user\\/pschofield\\/libs\\//g' ",
                 devDir,fileName,".html"))

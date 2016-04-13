@@ -18,7 +18,7 @@
 #' @param args any arguments to add to the job submission string
 #'
 #' @export
-subScript <- function(scriptstub="ssh",script=c("#!/bin/bash","hostname"),scriptext=".sh",
+subScript <- function(scriptstub="pieta_qsub",script=c("#!/bin/bash","hostname"),scriptext=".sh",
                       tmpdir="/homes/pschofield/tmp/",logdir="",cores=8,nosub=FALSE,email="as",
                       queue=NULL,emailAddress="p.schofield@dundee.ac.uk",args=NULL)
 {

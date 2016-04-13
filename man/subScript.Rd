@@ -4,7 +4,7 @@
 \alias{subScript}
 \title{subScript will submit a script to the cluster}
 \usage{
-subScript(scriptstub = "ssh", script = c("#!/bin/bash", "hostname"),
+subScript(scriptstub = "pieta_qsub", script = c("#!/bin/bash", "hostname"),
   scriptext = ".sh", tmpdir = "/homes/pschofield/tmp/", logdir = "",
   cores = 8, nosub = FALSE, email = "as", queue = NULL,
   emailAddress = "p.schofield@dundee.ac.uk", args = NULL)

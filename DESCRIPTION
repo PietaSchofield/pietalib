@@ -9,6 +9,7 @@ Description: My useful functions I don't want to have to source all the time
 License: GPL-2
 Imports:
     RSQLite,
+    XML,
     ggplot2,
     reshape2,
     lubridate,

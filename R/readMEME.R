@@ -1,4 +1,4 @@
-#' read in meme results file
+#' read in meme xml results file into an R list structure
 #'
 #' @param filename name of xml file
 #'
@@ -6,19 +6,54 @@
 #'
 #' @export
 readMEME <- function( filename ) {
-file <- XML::xmlParse( file = filename, getDTD = FALSE )
-attrs <- plyr::ldply(XML::xpathApply(file,"//motif",XML::xmlAttrs))
-pwm <- lapply(mtfs, function(mf) t(plyr::ldply(xpathApply(mf,"pos",xmlAttrs))))
-names(pwm) <- sapply( pwm, .pwm2Consensus)
-motifs <- list()
-motifs$array <- attr
-motifs$consensus <- names(pwm)
-motifs$pwm <- pwm
-return(motifs)
+  file <- XML::xmlParse( file = filename, getDTD = FALSE )
+  motifs <- list()
+  motifs$motifs <- plyr::ldply(XML::xpathApply(file,"//motif",XML::xmlAttrs))
+  motifs$scansitesum <- plyr::ldply(XML::xpathApply(file,"//scanned_sites",xmlAttrs))
+
+  motifs$pwm <- XML::xpathApply(file,"//probabilities",
+          function(tb){
+            tab <- t(plyr::ldply(XML::xpathApply(tb,".//alphabet_array",
+                    function(yc){
+                      XML::xpathSApply(yc, ".//value",XML::xmlValue)
+                    })))
+            rownames(tab) <- c("A","C","G","T")
+            tab
+          })
+
+  motifs$scannedSites <- XML::xpathApply(file,"//scanned_sites",
+           function(yc){
+             ss <- as.data.frame(t(XML::xpathSApply(yc, ".//scanned_site",XML::xmlAttrs)),
+                                  stringsAsFactors=F)
+             df <- as.data.frame(table(ss$motif_id))
+             colnames(df) <- c("motif_id","occurances")
+             df[order(df$occurances),]
+          })
+
+  motifs$contSites <- XML::xpathApply(file,"//contributing_sites",
+    function(cs){
+        attr <- plyr::ldply(XML::xpathApply(cs,".//contributing_site",xmlAttrs))
+        lf <- XML::xpathSApply(cs,".//left_flank",xmlValue)
+        rf <- XML::xpathSApply(cs,".//right_flank",xmlValue)
+        site <- XML::xpathSApply(cs,".//contributing_site",
+                function(css){
+                  paste0(XML::xpathSApply(css, ".//letter_ref",XML::xmlAttrs),collapse="")
+                })
+        cbind(attr,left_flank=lf,site=site,right_flant=rf)
+    })
+
+  names(motifs$scannedSites) <- motifs$scansitesum$sequence_id
+  names(motifs$contSites) <- motifs$motifs$id
+  names(motifs$pwm) <- motifs$motifs$id
+
+  motifs$motifs$consensus <- sapply( motifs$pwm, function( PWM ) {
+    pos <- apply( PWM, 2, which.max )
+    paste( rownames(PWM)[ pos ], collapse = '' )
+  })
+
+  motifs$motifs$regexp <- gsub("\n","",XML::xpathSApply(file,"//regular_expression",xmlValue))
+  return(motifs)
 }
 
-.pwm2Concensus <- function( PWM ) {
-  pos <- apply( PWM, 2, which.max )
-  paste( rownames(PWM)[ pos ], collapse = '' )
-}
+
 

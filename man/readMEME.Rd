@@ -2,7 +2,7 @@
 % Please edit documentation in R/readMEME.R
 \name{readMEME}
 \alias{readMEME}
-\title{read in meme results file}
+\title{read in meme xml results file into an R list structure}
 \usage{
 readMEME(filename)
 }
@@ -13,6 +13,6 @@ readMEME(filename)
 returns a list with an array of statistic on each motif and an list of all the pwms
 }
 \description{
-read in meme results file
+read in meme xml results file into an R list structure
 }
 

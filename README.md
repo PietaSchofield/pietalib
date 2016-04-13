@@ -8,7 +8,7 @@ Some useful functions for various things including
     - broadPeaks
     - narrowPeaks
     - prism files
-    - MEME XML
+    - [readMEME](https://github.com/PietaSchofield/pietalib/blob/master/R/readMEME.R) read meme XML output
     - DREME XML
 - some functions for including citation for r packages via RefManageR in to Rmarkdown
 

@@ -1,0 +1,13 @@
+.hilite {
+  background-color: yellow;
+  border-style: none;
+  font-weight: bold;
+}
+
+.centre{
+  text-align: center
+}
+
+caption{
+  caption-side: bottom;
+}

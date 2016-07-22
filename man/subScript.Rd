@@ -7,7 +7,7 @@
 subScript(scriptstub = "pieta_qsub", script = c("#!/bin/bash", "hostname"),
   scriptext = ".sh", tmpdir = "/homes/pschofield/tmp/", logdir = "",
   cores = 8, nosub = FALSE, email = "as", queue = NULL,
-  emailAddress = "p.schofield@dundee.ac.uk", args = NULL)
+  emailAddress = "p.schofield@dundee.ac.uk", args = NULL, ramSize = "4G")
 }
 \arguments{
 \item{scriptstub}{the stub for the temporary file name}

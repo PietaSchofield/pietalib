@@ -7,33 +7,29 @@
 #' @param open open the file on publishing
 #'
 #' @export
-publish <- function(filePath,note=T,outStub=NULL,delete=F,open=T){
-  fileName <- gsub("[.]Rmd","",basename(filePath))
-  devDir <- dirname(filePath)
-  projName <- basename(devDir)
-  devDir <- paste0(devDir,"/")
+publish <- function(rname="/Users/pschofield/git_tree/",pname=NULL,fname=NULL,note=T,
+                    outStub=NULL,delete=F,open=T){
+  devDir <- paste0(rname,pname,"/")
   if(note) outStub <- "notebook"
-  outDir <- paste0("/Volumes/pschofield/public_html/Projects/",projName,"/",outStub,"/")
+  outDir <- paste0("/Volumes/pschofield/public_html/Projects/",pname,"/",outStub,"/")
 
   system(paste0("sed -i.bak 's/libs\\//\\/user\\/pschofield\\/libs\\//g' ",
-                devDir,fileName,".html"))
+                devDir,fname,".html"))
   # copy the file
-  file.copy(paste0(devDir,fileName,".html"),paste0(outDir,fileName,".html"),
-            overwrite=T)
-  dir.create(paste0(outDir,fileName,"_files/figure-html"),rec=T,showWarnings = F)
+  file.copy(paste0(devDir,fname,".html"),paste0(outDir,fname,".html"), overwrite=T)
+  dir.create(paste0(outDir,fname,"_files/figure-html"),rec=T,showWarnings = F)
   # copy all the pictures
-  success <- lapply(list.files(paste0(devDir,fileName,"_files"),
-                               pattern="*[.]*",recur=T),
+  success <- lapply(list.files(paste0(devDir,fname,"_files"), pattern="*[.]*",recur=T),
                     function(fn){
-                      file.copy(from = paste0(devDir,fileName,"_files/",fn),
-                                to = paste0(outDir,fileName,"_files/",fn),overwrite=T)
+                      file.copy(from = paste0(devDir,fname,"_files/",fn),
+                                to = paste0(outDir,fname,"_files/",fn),overwrite=T)
                     })
   if(open){
     system(paste0("open http://www.compbio.dundee.ac.uk/user/pschofield/",
-                  "Projects/",projName,"/",outStub,"/",fileName,".html"))
+                  "Projects/",pname,"/",outStub,"/",fname,".html"))
   }
   if(delete){
-    unlink(paste0(devDir,fileName,"_files"),rec=T,force=T)
-    unlink(paste0(devDir,fileName,".html*"))
+    unlink(paste0(devDir,fname,"_files"),rec=T,force=T)
+    unlink(paste0(devDir,fname,".html*"))
   }
 }

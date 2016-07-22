@@ -4,8 +4,8 @@
 #'
 #' @export
 retGenBank <- function(gid,getfullseq=FALSE){
-  xmlDoc <- reutils::content(reutils::efetch(reutils::esearch(gid,db="nucleotide"),
-                                             rettype="gb",retmode="xml"))
+  xmlDoc <- reutils::content(reutils::efetch(reutils::esearch(gid,db="nuccore"),
+                                             rettype="native",retmode="xml"))
   ft<-XML::xmlRoot(xmlDoc)[[1]][["GBSeq_feature-table"]]
   features <- .getFeatures()
   XML::xmlEventParse(as(ft,"character"), list(), branches=features,asText=T)

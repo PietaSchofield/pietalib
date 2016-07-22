@@ -20,14 +20,14 @@
 #' @export
 subScript <- function(scriptstub="pieta_qsub",script=c("#!/bin/bash","hostname"),scriptext=".sh",
                       tmpdir="/homes/pschofield/tmp/",logdir="",cores=8,nosub=FALSE,email="as",
-                      queue=NULL,emailAddress="p.schofield@dundee.ac.uk",args=NULL)
+                      queue=NULL,emailAddress="p.schofield@dundee.ac.uk",args=NULL,ramSize="4G")
 {
   batchJob <- tempfile(pattern=paste0(scriptstub,"_"),tmpdir=tmpdir,fileext=scriptext)
   filecon <- file(batchJob)
   writeLines(script, filecon)
   close(filecon)
   if(!nosub) subJob(scriptfile=batchJob,logdir=logdir,mcCores=cores,email=email,args=args,
-                    queue=queue)
+                    queue=queue,ramSize = ramSize)
 }
 
 

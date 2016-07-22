@@ -1,0 +1,38 @@
+---
+author: "Pieta Schofield"
+output:
+  html_document:
+    code_folding: show
+    fig_caption: yes
+    highlight: textmate
+    includes:
+      before_body: /Users/pschofield/git_hub/include/before_body_noimg.html
+      in_header: /Users/pschofield/git_hub/include/in_header.html
+    theme: spacelab
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: yes
+      smooth_scroll: no
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+```{r setup,echo=FALSE,include=FALSE}
+require(knitr)
+require(RefManageR)
+require(pietalib)
+opts_chunk$set( message=F, warning=F )
+BibOptions(check.entries = F, style = "markdown", cite.style = "authoryear", 
+           bib.style = "authoryear")
+bib <- ReadBib("/Users/pschofield/git_tree/biblio/zotero.bib",check=FALSE)
+```
+
+#PAGETITLE
+
+
+```{r final, eval=FALSE, echo=FALSE,results="asis",comment=NA}
+PrintBibliography(bib)
+```
+

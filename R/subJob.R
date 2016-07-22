@@ -15,11 +15,12 @@
 #' @export
 subJob <- function(scriptfile,user="pschofield", host="login.compbio.dundee.ac.uk",
                    logdir="/homes/pschofield/tmp/", mcCores=1,email="as",queue=NULL,
-                   emailAddress="p.schofield@dundee.ac.uk",args=NULL)
+                   emailAddress="p.schofield@dundee.ac.uk",args=NULL, ramSize="4G")
 {
   jobString <- paste0("chmod +x ",scriptfile,";\n",
                       "/gridware/sge/bin/lx-amd64/qsub",
                       ifelse(is.null(queue)," ",paste0(" -q ",queue)),
+                      " -l ram=",ramSize,
                       " -o ",logdir,
                       " -e ",logdir,
                       " -pe smp ",mcCores,
@@ -27,7 +28,8 @@ subJob <- function(scriptfile,user="pschofield", host="login.compbio.dundee.ac.u
                       " -m ",email,
                       " -R yes ",scriptfile)
   if(!is.null(args)) jobString=paste0(jobString," ",args)
-  system(paste0("ssh -T ",user,"@",host," '",jobString,"'"),intern=T)
+  list(jobid=system(paste0("ssh -T ",user,"@",host," '",jobString,"'"),intern=T),
+       jobstring=jobString)
 }
 
 

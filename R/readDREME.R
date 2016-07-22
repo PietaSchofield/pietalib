@@ -7,9 +7,9 @@
 #' @export
 readDREME <- function( filename ) {
   file <- XML::xmlParse( file = filename, getDTD = FALSE )
-  mtfs <- getNodeSet(file,"//motif")
-  attrs <- plyr::ldply(xpathApply(file,"//motif",xmlAttrs))
-  pwm <- lapply(mtfs, function(mf) t(plyr::ldply(xpathApply(mf,"pos",xmlAttrs))))
+  mtfs <- XML::getNodeSet(file,"//motif")
+  attrs <- plyr::ldply(XML::xpathApply(file,"//motif",XML::xmlAttrs))
+  pwm <- lapply(mtfs, function(mf) t(plyr::ldply(XML::xpathApply(mf,"pos",XML::xmlAttrs))))
   motifs <- list()
   motifs$array <- attrs
   motifs$pwm <- pwm

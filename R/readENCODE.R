@@ -6,7 +6,9 @@
 #' @export
 readENCODE <- function(filename){
   type <- tail(strsplit(basename(filename),"[.]")[[1]],1)
-  pks <- read.delim(filename,head=F,sep="\t")
+  pks <- NULL
+  pks <- try(read.delim(filename,head=F,sep="\t",stringsAsFactor=F),silent = T)
+  if(is(pks)=="try-error") return(NULL)
   if(type=="narrowPeak"){
     colnames(pks) <- c("seqnames","start","end","name","score","strand","signal","pValue",
                        "qValue","peak")

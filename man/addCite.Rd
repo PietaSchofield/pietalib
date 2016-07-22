@@ -4,10 +4,14 @@
 \alias{addCite}
 \title{include citation for package in markdown}
 \usage{
-addCite(packages, type = "T", bib = NULL)
+addCite(bib = NULL, packages = NULL, type = "T")
 }
 \arguments{
-\item{packages}{}
+\item{bib}{bibliography for RefManageR otherwise put bibtex citation in}
+
+\item{packages}{vector of package names}
+
+\item{type}{T for in text A for other}
 }
 \description{
 include citation for package in markdown

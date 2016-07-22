@@ -1,0 +1,54 @@
+<!-- 
+NB load this file and then save it to the new file name then switch to the new file and edit
+
+Add a title
+
+Change the instances of 
+  PROJDIR  to the correct project directory
+  THISFILE to be the name of the file
+
+-->
+---
+author: Pieta Schofield
+output:
+  word_document
+---
+
+#PAGETITLE
+
+```{r setup,echo=FALSE,include=FALSE}
+require(pietalib)
+require(RefManageR)
+fileName <- "THISFILE"
+projName <- "PROJDIR"
+outStub <- ""
+
+urlStub <- "http://www.compbio.dundee.ac.uk/user/pschofield/"
+remDir <- "/homes/pschofield/"
+locDir <- "/Users/pschofield/"
+if(!file.exists(paste0(remDir,"Projects"))){
+  proDir <- paste0(remDir,"Projects/")
+  isLocal <- TRUE
+}else{
+  proDir <- paste0(locDir,"Projects/")
+  isLocal <- FALSE
+}
+
+BibOptions(check.entries = F, style = "markdown", cite.style = "authoryear", 
+           bib.style = "authoryear")
+bib <- ReadBib("/Users/pschofield/git_tree/biblio/bioinf.bib",check=FALSE)
+
+projDir <- paste0(proDir,projName,"/")
+```
+
+
+```{r final, eval=FALSE, echo=FALSE,results="asis",comment=NA}
+PrintBibliography(bib)
+```
+
+```{r pageBuild, echo=FALSE, eval=FALSE}
+outFile <- buildAll(projName,fileName,outstub=outStub,outType="word_document")
+if(!isLocal) outFile <- paste0(urlStub,"Projects/",projName,"/",outStub,"/",fileName,".html")
+system(paste0("open ",outFile))
+```
+

@@ -6,7 +6,8 @@
 \usage{
 subJob(scriptfile, user = "pschofield", host = "login.compbio.dundee.ac.uk",
   logdir = "/homes/pschofield/tmp/", mcCores = 1, email = "as",
-  queue = NULL, emailAddress = "p.schofield@dundee.ac.uk", args = NULL)
+  queue = NULL, emailAddress = "p.schofield@dundee.ac.uk", args = NULL,
+  ramSize = "4G")
 }
 \arguments{
 \item{user}{a string with the user name of the person making the ssh connection}

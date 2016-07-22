@@ -4,11 +4,10 @@
 \alias{publish}
 \title{Publish all relevant files from the local directory to my public_html tree}
 \usage{
-publish(filePath, note = T, outStub = NULL, delete = F, open = T)
+publish(rname = "/Users/pschofield/git_tree/", pname = NULL, fname = NULL,
+  note = T, outStub = NULL, delete = F, open = T)
 }
 \arguments{
-\item{filePath}{full name of the markdown file from which the html was generated}
-
 \item{note}{publish to the notebook directory}
 
 \item{outStub}{name of subdirectory to publish to}
@@ -16,6 +15,8 @@ publish(filePath, note = T, outStub = NULL, delete = F, open = T)
 \item{delete}{delete the local files after copying}
 
 \item{open}{open the file on publishing}
+
+\item{filePath}{full name of the markdown file from which the html was generated}
 }
 \description{
 Publish all relevant files from the local directory to my public_html tree

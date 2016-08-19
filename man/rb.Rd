@@ -4,7 +4,7 @@
 \alias{rb}
 \title{rebuild a package}
 \usage{
-rb(pkgName, baseDir = "/Users/pschofield/git_hub/")
+rb(pkgName, baseDir = "/Users/pschofield/GitHub/")
 }
 \arguments{
 \item{pkgname}{}

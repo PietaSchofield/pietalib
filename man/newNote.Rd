@@ -4,7 +4,7 @@
 \alias{newNote}
 \title{create a new notebook file}
 \usage{
-newNote(name = NULL, root = "/Users/pschofield/git_tree/")
+newNote(name = NULL, root = "/Users/pschofield/Code/")
 }
 \arguments{
 \item{name}{project name}

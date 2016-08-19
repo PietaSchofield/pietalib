@@ -5,7 +5,7 @@
 #' @param rstudio
 #'
 #' @export
-rb <- function(pkgName, baseDir="/Users/pschofield/git_hub/"){
+rb <- function(pkgName, baseDir="/Users/pschofield/GitHub/"){
   curd <- getwd()
   setwd(paste0(baseDir,pkgName))
   devtools::document()

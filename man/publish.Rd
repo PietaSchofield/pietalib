@@ -4,7 +4,7 @@
 \alias{publish}
 \title{Publish all relevant files from the local directory to my public_html tree}
 \usage{
-publish(rname = "/Users/pschofield/git_tree/", pname = NULL, fname = NULL,
+publish(rname = "/Users/pschofield/Code/", pname = NULL, fname = NULL,
   note = T, outStub = NULL, delete = F, open = T)
 }
 \arguments{

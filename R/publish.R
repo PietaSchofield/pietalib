@@ -7,7 +7,7 @@
 #' @param open open the file on publishing
 #'
 #' @export
-publish <- function(rname="/Users/pschofield/git_tree/",pname=NULL,fname=NULL,note=T,
+publish <- function(rname="/Users/pschofield/Code/",pname=NULL,fname=NULL,note=T,
                     outStub=NULL,delete=F,open=T){
   devDir <- paste0(rname,pname,"/")
   if(note) outStub <- "notebook"

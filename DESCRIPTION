@@ -14,7 +14,6 @@ Imports:
     reshape2,
     lubridate,
     RMySQL,
-    RefManageR
 Suggests:
     testthat,
     knitr

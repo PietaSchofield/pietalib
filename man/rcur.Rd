@@ -5,7 +5,7 @@
 \title{render the current document}
 \usage{
 rcur(fileName = .curFile, projDir = .curProj, inDir = "Code",
-  outDir = "Projects")
+  outDir = "Notes/Projects")
 }
 \arguments{
 \item{pname}{project name}

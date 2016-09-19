@@ -4,7 +4,7 @@
 \alias{rcur}
 \title{render the current document}
 \usage{
-rcur(fileName = .curFile, projDir = .curProj, inDir = "Code",
+rcur(fileName = .curFile, projDir = .curProj, inDir = "Code/bb",
   outDir = "Notes/Projects")
 }
 \arguments{

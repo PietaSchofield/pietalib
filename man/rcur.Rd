@@ -4,8 +4,9 @@
 \alias{rcur}
 \title{render the current document}
 \usage{
-rcur(fileName = .curFile, projDir = .curProj, inDir = "Code/bb/crukwork",
-  outDir = "Notes/Projects")
+rcur(fileName = .curFile, projDir = .curProj, inDir = NULL,
+  outDir = "Notes/Projects", rootDir = "/Volumes/pschofield",
+  codeDir = "/Users/pschofield/Code/bb/CRUK")
 }
 \arguments{
 \item{pname}{project name}
@@ -17,6 +18,8 @@ rcur(fileName = .curFile, projDir = .curProj, inDir = "Code/bb/crukwork",
 \item{rname}{root of tree}
 
 \item{oflag}{open a file}
+
+\item{rootdir}{root}
 }
 \description{
 render the current document

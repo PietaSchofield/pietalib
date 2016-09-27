@@ -13,23 +13,16 @@
 #' @param args any arguments to add to the job submission string
 #'
 #' @export
-subJob <- function(scriptfile,user="pschofield", host="login.compbio.dundee.ac.uk",
-                   logdir="/homes/pschofield/tmp/", mcCores=1,email="as",queue=NULL,
-                   emailAddress="p.schofield@dundee.ac.uk",args=NULL, ramSize="4G")
+subJob <- function(scriptfile,user="pschofield", host="troodon.scicom.picr.man.ac.uk",
+                   qsubString="qsub",args=NULL, noSub=T )
 {
-  jobString <- paste0("chmod +x ",scriptfile,";\n",
-                      "/gridware/sge/bin/lx-amd64/qsub",
-                      ifelse(is.null(queue)," ",paste0(" -q ",queue)),
-                      " -l ram=",ramSize,
-                      " -o ",logdir,
-                      " -e ",logdir,
-                      " -pe smp ",mcCores,
-                      " -M ",emailAddress,
-                      " -m ",email,
-                      " -R yes ",scriptfile)
-  if(!is.null(args)) jobString=paste0(jobString," ",args)
-  list(jobid=system(paste0("ssh -T ",user,"@",host," '",jobString,"'"),intern=T),
-       jobstring=jobString)
+  jobString <- paste0("'source /etc/bashrc;", qsubString," ",scriptfile, " ",args," ")
+  sshString <- paste0("ssh ",user,"@",host," ",jobString,"'")
+  if(noSub){
+    sshString
+  }else{
+    list(jobid=system(sshString), jobstring=sshString)
+  }
 }
 
 

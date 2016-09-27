@@ -20,7 +20,8 @@
 #' @export
 subScript <- function(scriptstub="pieta_qsub",script=c("#!/bin/bash","hostname"),scriptext=".sh",
                       tmpdir="/homes/pschofield/tmp/",logdir="",cores=8,nosub=FALSE,email="as",
-                      queue=NULL,emailAddress="p.schofield@dundee.ac.uk",args=NULL,ramSize="4G")
+                      queue=NULL,emailAddress="p.schofield@dundee.ac.uk",args=NULL,ramSize="4G",
+                      nNodes=1)
 {
   batchJob <- tempfile(pattern=paste0(scriptstub,"_"),tmpdir=tmpdir,fileext=scriptext)
   filecon <- file(batchJob)

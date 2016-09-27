@@ -4,7 +4,8 @@
 \alias{rsh}
 \title{execute a command remotely via ssh}
 \usage{
-rsh(cmd, hostname = "login.compbio.dundee.ac.uk", username = "pschofield")
+rsh(cmd, hostname = "troodon.scicom.picr.man.ac.uk",
+  username = "pschofield")
 }
 \arguments{
 \item{cmd}{the command to execute}

@@ -17,7 +17,7 @@ readFC <- function(filename, exons=F){
   rownames(counts) <- rownames(dat)
   rownames(annotation) <- rownames(dat)
   if(file.exists(paste0(filename,".summary"))){
-    sumDat <- read.delim(paste0(file,".summary"), sep="\t",h=T)
+    sumDat <- read.delim(paste0(filename,".summary"), sep="\t",h=T)
     rownames(sumDat) <- sumDat$Status
     sumDat <- sumDat[,-1]
     colnames(counts) <- gsub("[.]bam$","",colnames(counts))

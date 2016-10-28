@@ -1,17 +1,22 @@
 #' readFC read a featureCount File
 #'
-#' @param file
+#' @param filename name of feature counts output file
+#' @param exons boolean if features are exons and there will be duplicate gene ids 
 #'
 #' @export
-readFC <- function(file){
-  dat <- read.delim(file,head=T,skip=1,sep="\t")
-  rownames(dat) <- dat[,1]
+readFC <- function(filename, exons=F){
+  dat <- read.delim(filename,head=T,skip=1,sep="\t")
+  if(exons){
+    rownames(dat) <- gsub(" ","",apply(dat[,c(1:4)],1,paste,collapse="_"))
+  }else{
+    rownames(dat) <- dat[,1]
+  }
   annotation <- dat[,1:6]
   counts <- dat[,7:length(dat[1,])]
   colnames(counts) <- gsub("[.]bam$","",colnames(counts))
   rownames(counts) <- rownames(dat)
   rownames(annotation) <- rownames(dat)
-  if(file.exists(paste0(file,".summary"))){
+  if(file.exists(paste0(filename,".summary"))){
     sumDat <- read.delim(paste0(file,".summary"), sep="\t",h=T)
     rownames(sumDat) <- sumDat$Status
     sumDat <- sumDat[,-1]

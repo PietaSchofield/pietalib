@@ -4,10 +4,12 @@
 \alias{readFC}
 \title{readFC read a featureCount File}
 \usage{
-readFC(file)
+readFC(filename, exons = F)
 }
 \arguments{
-\item{file}{}
+\item{filename}{name of feature counts output file}
+
+\item{exons}{boolean if features are exons and there will be duplicate gene ids}
 }
 \description{
 readFC read a featureCount File

@@ -5,7 +5,7 @@
 #' @param verbose report whats going on
 #'
 #' @export
-bigcor <- function(x, nblocks = 10, verbose = TRUE, ...)
+bigcor <- function(x, nblocks = 10, verbose = TRUE, absolute=F )
 {
   require(ff, quietly = TRUE)
   NCOL <- ncol(x)
@@ -29,7 +29,11 @@ bigcor <- function(x, nblocks = 10, verbose = TRUE, ...)
     G2 <- SPLIT[[COMB[2]]]
     if (verbose) cat("Block", COMB[1], "with Block", COMB[2], "\n")
     flush.console()
-    COR <- cor(corMAT[, G1], corMAT[, G2], ...)
+    if(absolute){
+      COR <- 1 - abs(cor(x[, G1], x[, G2]))
+    }else{
+      COR <- 1 - cor(x[, G1], x[, G2])
+    }
     corMAT[G1, G2] <- COR
     corMAT[G2, G1] <- t(COR)
     COR <- NULL

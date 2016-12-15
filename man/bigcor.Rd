@@ -4,7 +4,7 @@
 \alias{bigcor}
 \title{large correlation matrix with ff}
 \usage{
-bigcor(x, nblocks = 10, verbose = TRUE, ...)
+bigcor(x, nblocks = 10, verbose = TRUE, absolute = F)
 }
 \arguments{
 \item{x}{the matrix}

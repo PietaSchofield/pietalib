@@ -12,7 +12,7 @@ readFC <- function(filename, exons=F){
     rownames(dat) <- dat[,1]
   }
   annotation <- dat[,1:6]
-  counts <- dat[,7:length(dat[1,])]
+  counts <- dat[,7:ncol(dat)]
   colnames(counts) <- gsub("[.]bam$","",colnames(counts))
   rownames(counts) <- rownames(dat)
   rownames(annotation) <- rownames(dat)

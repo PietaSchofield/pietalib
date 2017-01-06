@@ -2,6 +2,7 @@
 
 export(CitePres)
 export(addCite)
+export(anscore)
 export(bigcor)
 export(buildAll)
 export(codeHook)

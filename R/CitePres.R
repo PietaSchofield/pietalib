@@ -21,7 +21,7 @@ CitePres <- function(bib=NULL,ckey="",alim=2){
     txt <- paste0(paste(lapply(x$author,.pname),collapse=" and ")," ",detail," ",year)
   }
   if("doi"%in%levels(x)[[1]]){
-    url <- paste0("http://dx.doi.org/",x$doi)  
+    url <- paste0("https://doi.org/",x$doi)  
   }else if("url"%in%levels(x)[[1]]){
     url <- x$url  
   }else{
